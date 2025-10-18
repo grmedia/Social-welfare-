@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENGEZA 1 HIGH - Child Protection & Social Welfare</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c5aa0;
+            --primary-dark: #1e3a8a;
+            --primary-light: #4a7bd8;
+            --secondary: #25D366;
+            --secondary-dark: #128C7E;
+            --accent: #f39c12;
+            --accent-green: #27ae60;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+            --border-radius: 10px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: white;
+            padding: 10px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            border-radius: 8px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Page Sections */
+        .page-section {
+            min-height: 100vh;
+            padding: 100px 0 50px;
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 90, 160, 0.8), rgba(30, 58, 138, 0.9)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-lg {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: var(--dark);
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            height: 80px;
+            width: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            background: rgba(44, 90, 160, 0.1);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            background: var(--primary);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Image Cards */
+        .image-card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            background: white;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Forms */
+        .form-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.2);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        select.form-control {
+            height: 45px;
+        }
+
+        /* Child Protection Section */
+        .protection-section {
+            background: #f8f9fa;
+        }
+
+        .protection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .protection-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .protection-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .protection-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .protection-card ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .protection-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        .protection-card .btn {
+            margin-top: 1rem;
+        }
+
+        /* Rights Section */
+        .rights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .right-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .right-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .right-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .right-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Donation Section */
+        .donation-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .donation-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .donation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .donation-card h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .donation-card .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .donation-card ul {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .donation-card li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .donation-card li i {
+            margin-right: 10px;
+            color: var(--success);
+        }
+
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 380px;
+            height: 550px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header h3 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .bot-message {
+            background: #f1f1f1;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .user-message {
+            background: var(--primary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .quick-questions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .quick-question {
+            background: rgba(44, 90, 160, 0.1);
+            border: 1px solid var(--primary-light);
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quick-question:hover {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+        }
+
+        .chatbot-input button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            z-index: 100;
+        }
+
+        .chatbot-toggle:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .chatbot-toggle i {
+            font-size: 1.8rem;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 100px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            background: var(--secondary-dark);
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float i {
+            font-size: 1.8rem;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .contact-info li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            width: 20px;
+            color: var(--primary-light);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .resource-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .resource-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .resource-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Legal Framework Section */
+        .legal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .legal-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .legal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .legal-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legal-card h3 i {
+            color: var(--accent);
+        }
+
+        .legal-card ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .legal-card li {
+            margin-bottom: 0.8rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 0.8rem 1rem;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .form-container {
+                padding: 1.5rem;
+            }
+
+            .chatbot-container {
+                width: 90%;
+                right: 5%;
+                height: 70%;
+            }
+
+            .whatsapp-float {
+                bottom: 170px;
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <img src="https://i.imgur.com/97w1zzt.jpeg" alt="Zengeza 1 High Logo" class="logo-img">
+                    <div class="logo-text">
+                        <div class="logo">ZENGEZA 1 HIGH</div>
+                        <div class="tagline">Child Protection & Social Welfare</div>
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" data-page="home">Home</a></li>
+                    <li><a href="#" data-page="about">About</a></li>
+                    <li><a href="#" data-page="protection">Child Protection</a></li>
+                    <li><a href="#" data-page="rights">Child Rights</a></li>
+                    <li><a href="#" data-page="legal">Legal Framework</a></li>
+                    <li><a href="#" data-page="donate">Donate</a></li>
+                    <li><a href="#" data-page="contact">Contact</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home" class="page-section active">
+        <div class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Protecting Children, Building Futures</h1>
+                    <p>Zengeza 1 High School initiative for child protection, rights awareness, and community development through comprehensive programs.</p>
+                    <div class="hero-buttons">
+                        <a href="#" data-page="protection" class="btn btn-lg">Learn About Child Protection</a>
+                        <a href="#" data-page="donate" class="btn btn-outline btn-lg">Support Our Cause</a>
+                        <a href="https://wa.me/263772390199?text=Hi%20Zengeza%201%20High,%20I%20would%20like%20to%20learn%20more%20about%20your%20child%20protection%20programs" class="btn btn-outline btn-lg" target="_blank">Chat with Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="12500">0</span>
+                        <span class="stat-label">Children Protected</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="8500">0</span>
+                        <span class="stat-label">Families Supported</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="320">0</span>
+                        <span class="stat-label">Active Volunteers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="47">0</span>
+                        <span class="stat-label">Communities Served</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="padding: 80px 0;">
+            <div class="section-header">
+                <h2 class="section-title">Our Key Initiatives</h2>
+                <p class="section-subtitle">Comprehensive programs designed to protect children and support families</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Child Protection</h3>
+                    <p>Creating safe environments for children through awareness, prevention, and intervention programs.</p>
+                    <a href="#" data-page="protection" class="btn btn-primary">Learn More</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3>Rights Awareness</h3>
+                    <p>Educating children and communities about child rights as defined in Zimbabwe's Children's Act.</p>
+                    <a href="#" data-page="rights" class="btn btn-primary">Learn More</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Community Support</h3>
+                    <p>Providing essential assistance to vulnerable families through various welfare programs.</p>
+                    <a href="#" data-page="donate" class="btn btn-primary">Get Involved</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Our Initiative</h2>
+                <p class="section-subtitle">Dedicated to protecting children and promoting their rights in our community</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>A society where every child is protected, respected, and empowered to reach their full potential.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To create awareness about child rights, provide protection services, and support vulnerable children and families.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Our Approach</h3>
+                    <p>We work with schools, communities, and social welfare departments to implement child protection measures.</p>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 3rem;">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Our Team</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>School Administration</h3>
+                        <p>Our school leadership provides guidance and oversight for all child protection initiatives.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Trained Counselors</h3>
+                        <p>Professional counselors provide emotional support and guidance to children in need.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Community Volunteers</h3>
+                        <p>Dedicated volunteers from our community help implement programs and provide support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Child Protection Page -->
+    <section id="protection" class="page-section protection-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Child Protection Awareness</h2>
+                <p class="section-subtitle">Creating safe environments and protecting children from harm</p>
+            </div>
+
+            <div class="protection-grid">
+                <div class="protection-card">
+                    <h3>What is Child Abuse?</h3>
+                    <p>Child abuse includes any action that causes harm to a child, whether physical, emotional, or sexual.</p>
+                    <ul>
+                        <li>Physical harm or injury</li>
+                        <li>Emotional or psychological abuse</li>
+                        <li>Sexual abuse or exploitation</li>
+                        <li>Neglect or abandonment</li>
+                        <li>Child labor or trafficking</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="chatWithBot('What is child abuse?')">Ask ZENGA Assistant</button>
+                </div>
+
+                <div class="protection-card">
+                    <h3>Signs of Abuse</h3>
+                    <p>Recognizing the signs of abuse is the first step to protecting a child.</p>
+                    <ul>
+                        <li>Unexplained injuries or bruises</li>
+                        <li>Sudden changes in behavior</li>
+                        <li>Fear of certain people or places</li>
+                        <li>Difficulty sleeping or nightmares</li>
+                        <li>Decline in school performance</li>
+                        <li>Inappropriate sexual behavior or knowledge</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="chatWithBot('What are the signs of child abuse?')">Ask ZENGA Assistant</button>
+                </div>
+
+                <div class="protection-card">
+                    <h3>What To Do</h3>
+                    <p>If you suspect a child is being abused, it's important to take action.</p>
+                    <ul>
+                        <li>Listen to and believe the child</li>
+                        <li>Report to a trusted adult or authority</li>
+                        <li>Contact social welfare services</li>
+                        <li>Ensure the child's immediate safety</li>
+                        <li>Provide emotional support</li>
+                    </ul>
+                    <a href="https://wa.me/263772390199?text=I%20need%20to%20report%20a%20child%20protection%20concern" class="btn btn-danger" target="_blank">Report Abuse</a>
+                </div>
+
+                <div class="protection-card">
+                    <h3>Online Safety</h3>
+                    <p>Protecting children in the digital space is increasingly important.</p>
+                    <ul>
+                        <li>Monitor online activities</li>
+                        <li>Teach about privacy settings</li>
+                        <li>Discuss online risks and scams</li>
+                        <li>Encourage open communication</li>
+                        <li>Set clear boundaries for internet use</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="chatWithBot('Tell me about online safety for children')">Ask ZENGA Assistant</button>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 3rem;">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Get Help Now</h3>
+                <p style="text-align: center; margin-bottom: 2rem;">If you or someone you know needs help, don't hesitate to reach out.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Emergency Contact</h3>
+                        <p>For immediate assistance with child protection concerns:</p>
+                        <a href="tel:+263772390199" class="btn btn-danger">Call Now: +263 77 239 0199</a>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Counseling Services</h3>
+                        <p>Professional counseling for children affected by abuse:</p>
+                        <a href="https://wa.me/263772390199?text=I%20need%20counseling%20services%20for%20a%20child" class="btn btn-primary" target="_blank">Request Counseling</a>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Educational Resources</h3>
+                        <p>Materials to help educate children and adults about protection:</p>
+                        <button class="btn btn-primary" onclick="chatWithBot('I need educational resources about child protection')">Ask ZENGA Assistant</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Child Rights Page -->
+    <section id="rights" class="page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Rights of a Child</h2>
+                <p class="section-subtitle">Every child has fundamental rights that must be protected</p>
+            </div>
+
+            <div class="rights-grid">
+                <div class="right-card">
+                    <div class="right-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4>Right to Education</h4>
+                    <p>Every child has the right to access quality education that helps them develop their potential.</p>
+                    <button class="btn btn-primary" onclick="chatWithBot('Tell me about the right to education')">Learn More</button>
+                </div>
+                <div class="right-card">
+                    <div class="right-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Right to Protection</h4>
+                    <p>Children have the right to be protected from abuse, neglect, exploitation, and discrimination.</p>
+                    <button class="btn btn-primary" onclick="chatWithBot('What does the right to protection include?')">Learn More</button>
+                </div>
+                <div class="right-card">
+                    <div class="right-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h4>Right to Health</h4>
+                    <p>Every child has the right to healthcare, nutritious food, clean water, and a safe environment.</p>
+                    <button class="btn btn-primary" onclick="chatWithBot('Tell me about the right to health')">Learn More</button>
+                </div>
+                <div class="right-card">
+                    <div class="right-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h4>Right to Be Heard</h4>
+                    <p>Children have the right to express their opinions and have them taken seriously in matters affecting them.</p>
+                    <button class="btn btn-primary" onclick="chatWithBot('What is the right to be heard?')">Learn More</button>
+                </div>
+                <div class="right-card">
+                    <div class="right-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h4>Right to Family</h4>
+                    <p>Every child has the right to live with their family, unless it's not in their best interests.</p>
+                    <button class="btn btn-primary" onclick="chatWithBot('Tell me about the right to family')">Learn More</button>
+                </div>
+                <div class="right-card">
+                    <div class="right-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h4>Right to Identity</h4>
+                    <p>Children have the right to a legal identity, including a name and nationality.</p>
+                    <button class="btn btn-primary" onclick="chatWithBot('What is the right to identity?')">Learn More</button>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 3rem;">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Role of Social Welfare</h3>
+                <p style="text-align: center; margin-bottom: 2rem;">The Department of Social Welfare plays a crucial role in protecting children's rights in Zimbabwe.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Counseling Services</h3>
+                        <p>Professional counseling for children who have experienced trauma or abuse.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Child Protection Services</h3>
+                        <p>Investigation and intervention in cases of suspected abuse or neglect.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Family Support</h3>
+                        <p>Programs to strengthen families and prevent separation of children from their parents.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Birth Registration</h3>
+                        <p>Assistance with obtaining birth certificates and other identity documents.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Framework Page -->
+    <section id="legal" class="page-section protection-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Legal Framework</h2>
+                <p class="section-subtitle">Understanding the laws and policies that protect children in Zimbabwe</p>
+            </div>
+
+            <div class="legal-grid">
+                <div class="legal-card">
+                    <h3><i class="fas fa-book"></i> Constitution of Zimbabwe</h3>
+                    <p>The Constitution provides the foundation for children's rights in Zimbabwe.</p>
+                    <ul>
+                        <li>Section 19: Children's rights</li>
+                        <li>Section 81: Specific rights of children</li>
+                        <li>Protection from economic and sexual exploitation</li>
+                        <li>Right to education, healthcare, and shelter</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="chatWithBot('What does the Constitution say about children rights?')">Ask ZENGA Assistant</button>
+                </div>
+
+                <div class="legal-card">
+                    <h3><i class="fas fa-gavel"></i> Children's Act</h3>
+                    <p>The Children's Act [Chapter 5:06] provides detailed provisions for child protection.</p>
+                    <ul>
+                        <li>Definition of a child (under 18 years)</li>
+                        <li>Provisions against child abuse and neglect</li>
+                        <li>Procedures for child protection cases</li>
+                        <li>Establishment of children's courts</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="chatWithBot('What is the Children Act in Zimbabwe?')">Ask ZENGA Assistant</button>
+                </div>
+
+                <div class="legal-card">
+                    <h3><i class="fas fa-user-shield"></i> Domestic Violence Act</h3>
+                    <p>Protects children from domestic violence and provides for protection orders.</p>
+                    <ul>
+                        <li>Definition of domestic violence</li>
+                        <li>Protection orders for victims</li>
+                        <li>Criminal penalties for perpetrators</li>
+                        <li>Support services for affected children</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="chatWithBot('How does the Domestic Violence Act protect children?')">Ask ZENGA Assistant</button>
+                </div>
+
+                <div class="legal-card">
+                    <h3><i class="fas fa-globe"></i> International Conventions</h3>
+                    <p>Zimbabwe is signatory to international conventions protecting children's rights.</p>
+                    <ul>
+                        <li>UN Convention on the Rights of the Child</li>
+                        <li>African Charter on the Rights and Welfare of the Child</li>
+                        <li>ILO Conventions on child labor</li>
+                        <li>Optional Protocols on child trafficking</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="chatWithBot('What international conventions protect children in Zimbabwe?')">Ask ZENGA Assistant</button>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 3rem;">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Resources & Downloads</h3>
+                <p style="text-align: center; margin-bottom: 2rem;">Access important documents and resources related to child protection.</p>
+                
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>Children's Act Summary</h3>
+                        <p>Simplified version of the Children's Act for easy understanding.</p>
+                        <button class="btn btn-primary" onclick="chatWithBot('Where can I find the Children Act summary?')">Request Document</button>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-passport"></i>
+                        </div>
+                        <h3>Birth Registration Guide</h3>
+                        <p>Step-by-step guide to registering a child's birth in Zimbabwe.</p>
+                        <button class="btn btn-primary" onclick="chatWithBot('How do I register a child birth?')">Request Guide</button>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3>Reporting Abuse Guide</h3>
+                        <p>Information on how and where to report child abuse cases.</p>
+                        <button class="btn btn-primary" onclick="chatWithBot('How do I report child abuse?')">Request Guide</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Page -->
+    <section id="donate" class="page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Support Our Cause</h2>
+                <p class="section-subtitle">Your donations help fund our child protection programs and support vulnerable families</p>
+            </div>
+
+            <div class="donation-options">
+                <div class="donation-card">
+                    <h3>Basic Support</h3>
+                    <div class="price">$10</div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> School supplies for one child</li>
+                        <li><i class="fas fa-check"></i> Food for a family for one week</li>
+                        <li><i class="fas fa-check"></i> Educational materials</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="processDonation(10)">Donate Now</button>
+                </div>
+
+                <div class="donation-card" style="transform: scale(1.05); box-shadow: var(--shadow-lg);">
+                    <h3>Family Support</h3>
+                    <div class="price">$25</div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> All Basic Support benefits</li>
+                        <li><i class="fas fa-check"></i> Healthcare access for a child</li>
+                        <li><i class="fas fa-check"></i> Counseling sessions</li>
+                        <li><i class="fas fa-check"></i> Emergency shelter if needed</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="processDonation(25)">Donate Now</button>
+                </div>
+
+                <div class="donation-card">
+                    <h3>Community Impact</h3>
+                    <div class="price">$50</div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> All Family Support benefits</li>
+                        <li><i class="fas fa-check"></i> Support for multiple families</li>
+                        <li><i class="fas fa-check"></i> Child protection workshops</li>
+                        <li><i class="fas fa-check"></i> Rights awareness campaigns</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="processDonation(50)">Donate Now</button>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Monetary Donations</h3>
+                <p style="text-align: center; margin-bottom: 2rem;">Since we are still minors and don't have access to bank accounts, all monetary donations will be received only through our EcoCash number:</p>
+                
+                <div style="text-align: center; margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: var(--border-radius);">
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">EcoCash Number</h4>
+                    <p style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">0772 390 199</p>
+                    <p style="margin-top: 0.5rem;">Name: ZENGEZA 1 HIGH SOCIAL WELFARE</p>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="margin-bottom: 1rem;">How to Donate via EcoCash:</h4>
+                    <ol style="margin-left: 1.5rem;">
+                        <li>Go to your EcoCash app or dial *151#</li>
+                        <li>Select "Send Money"</li>
+                        <li>Enter: 0772 390 199</li>
+                        <li>Enter the amount you wish to donate</li>
+                        <li>Confirm and send</li>
+                        <li>(Optional) Send proof of donation to our WhatsApp number</li>
+                    </ol>
+                </div>
+
+                <div style="text-align: center;">
+                    <p>Your donation will go towards helping children and families in need. Thank you!</p>
+                    <a href="https://wa.me/263772390199?text=Hi%20Zengeza%201%20High,%20I%20just%20made%20a%20donation%20via%20EcoCash" class="btn btn-primary" style="margin-top: 1rem;" target="_blank">Confirm Donation via WhatsApp</a>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 3rem;">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Material Donations</h3>
+                <p style="text-align: center; margin-bottom: 2rem;">We also accept material donations to support children and families in need.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>School Supplies</h3>
+                        <ul>
+                            <li>Uniforms and shoes</li>
+                            <li>Books and backpacks</li>
+                            <li>Stationery (pens, notebooks)</li>
+                        </ul>
+                        <a href="https://wa.me/263772390199?text=I%20have%20school%20supplies%20to%20donate" class="btn btn-primary" target="_blank">Arrange Donation</a>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Clothing & Essentials</h3>
+                        <ul>
+                            <li>Reusable clothes in good condition</li>
+                            <li>Blankets and bedsheets</li>
+                            <li>Sanitary items and toiletries</li>
+                        </ul>
+                        <a href="https://wa.me/263772390199?text=I%20have%20clothing%20and%20essentials%20to%20donate" class="btn btn-primary" target="_blank">Arrange Donation</a>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Food Items</h3>
+                        <ul>
+                            <li>Mealie meal</li>
+                            <li>Cooking oil and beans</li>
+                            <li>Non-perishable food items</li>
+                        </ul>
+                        <a href="https://wa.me/263772390199?text=I%20have%20food%20items%20to%20donate" class="btn btn-primary" target="_blank">Arrange Donation</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact" class="page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-subtitle">Get in touch with Zengeza 1 High Child Protection Initiative</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Visit Us</h3>
+                    <p>Zengeza 1 High School<br>Chitungwiza, Zimbabwe</p>
+                    <a href="https://maps.google.com/?q=Zengeza+1+High+School+Chitungwiza" class="btn btn-primary" target="_blank">View on Map</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p>+263 77 239 0199<br>Mon-Fri, 8AM-4PM</p>
+                    <a href="tel:+263772390199" class="btn btn-primary">Call Now</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p>childprotection@zengeza1high.edu.zw<br>We respond within 24 hours</p>
+                    <a href="mailto:childprotection@zengeza1high.edu.zw" class="btn btn-primary">Send Email</a>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 3rem;">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Send Us a Message</h3>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="contactName">Your Name</label>
+                        <input type="text" id="contactName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Your Email</label>
+                        <input type="email" id="contactEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactSubject">Subject</label>
+                        <input type="text" id="contactSubject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Message</label>
+                        <textarea id="contactMessage" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Zengeza 1 High Initiative</h3>
+                    <p>Protecting children and promoting their rights through welfare programs and community engagement in Chitungwiza and beyond.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#" data-page="about">About</a></li>
+                        <li><a href="#" data-page="protection">Child Protection</a></li>
+                        <li><a href="#" data-page="rights">Child Rights</a></li>
+                        <li><a href="#" data-page="legal">Legal Framework</a></li>
+                        <li><a href="#" data-page="donate">Donate</a></li>
+                        <li><a href="#" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Zengeza 1 High, Chitungwiza</li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:+263772390199">+263 77 239 0199</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:childprotection@zengeza1high.edu.zw">childprotection@zengeza1high.edu.zw</a></li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 8AM-4PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Zengeza 1 High Child Protection & Social Welfare Initiative. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/263772390199?text=Hi%20Zengeza%201%20High,%20I%20would%20like%20to%20get%20more%20information%20about%20your%20child%20protection%20programs" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Chatbot Toggle -->
+    <div class="chatbot-toggle" id="chatbotToggle">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <h3><i class="fas fa-robot"></i> ZENGA Assistant</h3>
+            <button class="chatbot-close" id="chatbotClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">
+                Hello! I'm ZENGA, your child protection assistant. How can I help you today?
+                <div class="quick-questions">
+                    <div class="quick-question" onclick="chatWithBot('What is child abuse?')">What is child abuse?</div>
+                    <div class="quick-question" onclick="chatWithBot('Tell me about children rights')">Children's rights</div>
+                    <div class="quick-question" onclick="chatWithBot('How do I report abuse?')">Report abuse</div>
+                    <div class="quick-question" onclick="chatWithBot('What laws protect children?')">Legal protection</div>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Type your message...">
+            <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Page Navigation
+        document.querySelectorAll('.nav-links a, .hero-buttons a[data-page]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                if (pageId) {
+                    showPage(pageId);
+                }
+            });
+        });
+
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Close mobile menu if open
+            document.querySelector('.nav-links').classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+        // Donation Processing
+        function processDonation(amount) {
+            const text = `Hello Zengeza 1 High! I would like to make a donation of $${amount} to support your child protection programs. I will send the donation via EcoCash to 0772 390 199.`;
+            const encodedText = encodeURIComponent(text);
+            window.open(`https://wa.me/263772390199?text=${encodedText}`, '_blank');
+        }
+
+        // Animate Stats Counter
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-count'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current);
+                }, 16);
+            });
+        }
+
+        // Initialize stats animation when in viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.stats'));
+
+        // Contact Form Submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const subject = document.getElementById('contactSubject').value;
+            const message = document.getElementById('contactMessage').value;
+            
+            const text = `New Contact Form Submission:\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`;
+            const encodedText = encodeURIComponent(text);
+            
+            window.open(`https://wa.me/263772390199?text=${encodedText}`, '_blank');
+            this.reset();
+            alert('Thank you for your message! We will respond as soon as possible.');
+        });
+
+        // Chatbot Functionality
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotContainer = document.getElementById('chatbotContainer');
+        const chatbotClose = document.getElementById('chatbotClose');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const chatbotSend = document.getElementById('chatbotSend');
+
+        chatbotToggle.addEventListener('click', function() {
+            chatbotContainer.style.display = 'flex';
+        });
+
+        chatbotClose.addEventListener('click', function() {
+            chatbotContainer.style.display = 'none';
+        });
+
+        chatbotSend.addEventListener('click', sendMessage);
+        chatbotInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const message = chatbotInput.value.trim();
+            if (message === '') return;
+
+            // Add user message
+            addMessage(message, 'user');
+            chatbotInput.value = '';
+
+            // Generate bot response
+            setTimeout(() => {
+                const response = generateResponse(message);
+                addMessage(response, 'bot');
+            }, 1000);
+        }
+
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+            messageDiv.textContent = text;
+            
+            // Add quick questions for bot messages (except for follow-up questions)
+            if (sender === 'bot' && !text.includes('quick questions')) {
+                const quickQuestions = document.createElement('div');
+                quickQuestions.classList.add('quick-questions');
+                
+                // Get relevant follow-up questions based on the response
+                const followUps = getFollowUpQuestions(text);
+                
+                followUps.forEach(question => {
+                    const quickQuestion = document.createElement('div');
+                    quickQuestion.classList.add('quick-question');
+                    quickQuestion.textContent = question;
+                    quickQuestion.onclick = () => chatWithBot(question);
+                    quickQuestions.appendChild(quickQuestion);
+                });
+                
+                messageDiv.appendChild(quickQuestions);
+            }
+            
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        function getFollowUpQuestions(response) {
+            if (response.includes('child abuse')) {
+                return ['Signs of abuse', 'How to report abuse', 'Counseling services'];
+            } else if (response.includes('rights') || response.includes('right')) {
+                return ['Right to education', 'Right to protection', 'Legal framework'];
+            } else if (response.includes('legal') || response.includes('law')) {
+                return ['Children Act', 'Constitution', 'International conventions'];
+            } else if (response.includes('report') || response.includes('abuse')) {
+                return ['Emergency contacts', 'What information to provide', 'Confidentiality'];
+            } else if (response.includes('donat') || response.includes('support')) {
+                return ['Material donations', 'Volunteer opportunities', 'Other ways to help'];
+            } else {
+                return ['Child protection', 'Children rights', 'Get help now'];
+            }
+        }
+
+        function generateResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            // Child Abuse Questions
+            if (lowerMessage.includes('abuse') || lowerMessage.includes('abused')) {
+                return "Child abuse is any action by another person – adult or child – that causes significant harm to a child. It can be physical, sexual, emotional, or neglect. In Zimbabwe, child abuse is prohibited by the Children's Act and Constitution. If you suspect abuse, report it immediately to authorities or contact us for help.";
+            
+            } else if (lowerMessage.includes('signs of abuse') || lowerMessage.includes('symptoms')) {
+                return "Signs of child abuse can include: Unexplained injuries, sudden behavior changes, fear of certain people, inappropriate sexual knowledge, decline in school performance, depression, or self-harm. These signs don't always mean abuse is happening, but they warrant attention and possibly professional assessment.";
+            
+            } else if (lowerMessage.includes('report') && lowerMessage.includes('abuse')) {
+                return "To report child abuse in Zimbabwe:\n1. Contact the Department of Social Welfare\n2. Call Childline Zimbabwe at 116 (free hotline)\n3. Report to your local police station\n4. Contact us at +263 77 239 0199\nProvide as much information as possible while ensuring the child's safety.";
+            
+            // Children's Rights Questions
+            } else if (lowerMessage.includes('right') || lowerMessage.includes('rights')) {
+                return "Children's rights in Zimbabwe are protected by the Constitution (Section 81) and the Children's Act. Key rights include: Right to life, survival and development; Right to name and nationality; Right to family care; Right to education; Right to leisure and play; Right to be protected from abuse; Right to express their views.";
+            
+            } else if (lowerMessage.includes('right to education')) {
+                return "The right to education means every child has the right to free basic education. The government must take reasonable measures to make education available and accessible. This includes providing schools, trained teachers, and learning materials. No child should be denied education due to inability to pay fees.";
+            
+            } else if (lowerMessage.includes('right to protection')) {
+                return "The right to protection means children must be protected from: All forms of violence; Abuse, neglect and maltreatment; Economic exploitation; Sexual exploitation and abuse; Harmful cultural practices; Drug abuse; Kidnapping and trafficking. The state, communities and families all share this responsibility.";
+            
+            // Legal Framework Questions
+            } else if (lowerMessage.includes('legal') || lowerMessage.includes('law') || lowerMessage.includes('act')) {
+                return "Zimbabwe's legal framework for child protection includes:\n- Constitution of Zimbabwe (Section 81)\n- Children's Act [Chapter 5:06]\n- Domestic Violence Act\n- Criminal Law Code\n- Education Act\n- Zimbabwe is also party to international conventions like the UN Convention on the Rights of the Child.";
+            
+            } else if (lowerMessage.includes('children act')) {
+                return "The Children's Act [Chapter 5:06] is Zimbabwe's main legislation for child protection. Key provisions include: Defining a child as under 18; Establishing children's courts; Procedures for care and protection cases; Provisions against child labor; Regulations for adoption and foster care; Measures against child marriage.";
+            
+            } else if (lowerMessage.includes('constitution') || lowerMessage.includes('section 81')) {
+                return "Section 81 of the Zimbabwe Constitution specifically outlines children's rights, including: Right to name and nationality from birth; Right to family or parental care; Right to education, shelter and health care; Protection from economic and sexual exploitation; Protection from maltreatment, neglect or abuse; Right to legal representation in civil cases.";
+            
+            // Donation and Support Questions
+            } else if (lowerMessage.includes('donat') || lowerMessage.includes('support') || lowerMessage.includes('help')) {
+                return "You can support our child protection work through:\n- Monetary donations via EcoCash (0772 390 199)\n- Material donations (school supplies, clothing, food)\n- Volunteering your time and skills\n- Spreading awareness in your community\n- Partnering with us for events or programs\nAll support helps protect children and promote their rights.";
+            
+            // General Help Questions
+            } else if (lowerMessage.includes('help') || lowerMessage.includes('emergency')) {
+                return "For immediate help:\n- Call us: +263 77 239 0199\n- Contact Department of Social Welfare\n- Call Childline Zimbabwe: 116\n- In life-threatening situations, contact police immediately\nWe provide counseling, emergency shelter, legal assistance, and ongoing support for children in need.";
+            
+            } else if (lowerMessage.includes('counsel') || lowerMessage.includes('therapy')) {
+                return "We offer counseling services for children affected by abuse, trauma, or other challenges. Our trained counselors provide:\n- Individual therapy sessions\n- Group support programs\n- Family counseling\n- Crisis intervention\n- Referrals to specialized services\nContact us to arrange a confidential session.";
+            
+            } else if (lowerMessage.includes('online safety') || lowerMessage.includes('internet')) {
+                return "Online safety tips for children:\n- Use privacy settings on social media\n- Never share personal information online\n- Be careful about sharing photos\n- Tell a trusted adult about uncomfortable online interactions\n- Use strong, unique passwords\n- Understand that people online may not be who they claim\nWe offer workshops on digital safety for children and parents.";
+            
+            } else if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+                return "Hello! I'm ZENGA, your child protection assistant. I can help you with information about children's rights, reporting abuse, legal frameworks, getting help, and supporting our cause. What would you like to know?";
+            
+            } else if (lowerMessage.includes('thank') || lowerMessage.includes('thanks')) {
+                return "You're welcome! Is there anything else I can help you with regarding child protection, children's rights, or our programs?";
+            
+            } else {
+                return "I'm not sure I understand. Could you please rephrase your question? I can help with information about child protection, children's rights, legal frameworks, reporting abuse, or getting support. Or you can contact us directly at +263 77 239 0199 for specific assistance.";
+            }
+        }
+
+        function chatWithBot(predefinedMessage) {
+            chatbotContainer.style.display = 'flex';
+            setTimeout(() => {
+                chatbotInput.value = predefinedMessage;
+                sendMessage();
+            }, 500);
+        }
+
+        // Initialize the app with home page
+        document.addEventListener('DOMContentLoaded', function() {
+            showPage('home');
+        });
+    </script>
+</body>
+</html>

@@ -62,10 +62,11 @@
             box-shadow: var(--shadow);
             z-index: 1000;
             transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
 
         header.scrolled {
-            background: white;
+            background: rgba(255, 255, 255, 0.98);
             padding: 10px 0;
         }
 
@@ -157,6 +158,12 @@
 
         .page-section.active {
             display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .section-header {
@@ -356,30 +363,6 @@
         .feature-card p {
             color: var(--gray);
             margin-bottom: 1.5rem;
-        }
-
-        /* Image Cards */
-        .image-card {
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            background: white;
-        }
-
-        .image-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .card-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 1.5rem;
         }
 
         /* Stats Section */
@@ -596,6 +579,15 @@
             display: none;
             flex-direction: column;
             overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-container.active {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .chatbot-header {
@@ -636,6 +628,12 @@
             border-radius: 18px;
             max-width: 80%;
             word-wrap: break-word;
+            animation: messageSlide 0.3s ease;
+        }
+
+        @keyframes messageSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .bot-message {
@@ -696,6 +694,11 @@
             height: 40px;
             margin-left: 10px;
             cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chatbot-input button:hover {
+            background: var(--primary-dark);
         }
 
         .chatbot-toggle {
@@ -744,16 +747,6 @@
             z-index: 100;
             animation: pulse 2s infinite;
         }
-
-        .whatsapp-float:hover {
-            background: var(--secondary-dark);
-            transform: scale(1.1);
-        }
-
-        .whatsapp-float i {
-            font-size: 1.8rem;
-        }
-
         @keyframes pulse {
             0% {
                 box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
@@ -770,7 +763,7 @@
         footer {
             background: var(--dark);
             color: white;
-            padding: 60px 0 20px;
+            padding: 40px 0 20px;
         }
 
         .footer-content {
@@ -927,6 +920,738 @@
             margin-bottom: 0.8rem;
         }
 
+        /* Live Updates Section */
+        .live-updates {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            color: white;
+            padding: 40px 0;
+            margin: 40px 0;
+        }
+
+        .update-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transition);
+        }
+
+        .update-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .update-icon {
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+
+        .update-content h4 {
+            margin-bottom: 5px;
+        }
+
+        .update-content p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        /* Ministry Badge */
+        .ministry-badge {
+            position: fixed;
+            top: 120px;
+            right: 30px;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            box-shadow: var(--shadow-lg);
+            z-index: 100;
+            text-align: center;
+            max-width: 200px;
+            transition: var(--transition);
+        }
+
+        .ministry-badge:hover {
+            transform: translateY(-5px);
+        }
+
+        .ministry-badge img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .ministry-badge h4 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .ministry-badge p {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Login Modal */
+        .login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .login-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .login-modal.active .login-container {
+            transform: translateY(0);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header h2 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-step {
+            display: none;
+        }
+
+        .login-step.active {
+            display: block;
+        }
+
+        .question-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .question-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .option-card {
+            border: 2px solid #eee;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .option-card:hover, .option-card.selected {
+            border-color: var(--primary);
+            background: rgba(44, 90, 160, 0.05);
+        }
+
+        .option-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .option-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-progress {
+            height: 6px;
+            background: #eee;
+            border-radius: 3px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .login-progress-bar {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        .login-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        /* New Features */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 20px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .user-menu {
+            position: relative;
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            width: 200px;
+            padding: 10px 0;
+            display: none;
+            z-index: 1000;
+        }
+
+        .user-menu:hover .user-dropdown {
+            display: block;
+        }
+
+        .user-dropdown a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .user-dropdown a:hover {
+            background: #f8f9fa;
+            color: var(--primary);
+        }
+
+        .settings-panel {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        .setting-info h4 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .setting-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        .request-form {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .request-type {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .request-option {
+            border: 2px solid #eee;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .request-option:hover, .request-option.active {
+            border-color: var(--primary);
+            background: rgba(44, 90, 160, 0.05);
+        }
+
+        .request-option i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .request-option h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .request-details {
+            display: none;
+        }
+
+        .request-details.active {
+            display: block;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .progress-step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .progress-step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: #eee;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #eee;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-step.active .step-number {
+            background: var(--primary);
+            color: white;
+        }
+
+        .progress-step.completed .step-number {
+            background: var(--success);
+            color: white;
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .progress-step.active .step-label {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .progress-step.completed .step-label {
+            color: var(--success);
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .tab-container {
+            margin-bottom: 2rem;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .tab.active {
+            border-bottom-color: var(--primary);
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .assistance-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .assistance-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .assistance-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .assistance-title {
+            color: var(--primary);
+            margin-bottom: 0;
+        }
+
+        .assistance-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-approved {
+            background: #d1edff;
+            color: var(--primary);
+        }
+
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .assistance-details {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .assistance-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--danger);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clear-activity {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        /* Sign Language Section */
+        .sign-language-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .sign-language-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .sign-language-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .sign-language-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .sign-language-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin: 1rem 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        /* Accessibility Features */
+        .accessibility-panel {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            background: white;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            box-shadow: var(--shadow-lg);
+            z-index: 100;
+            padding: 15px;
+            transition: var(--transition);
+        }
+
+        .accessibility-toggle {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .accessibility-options {
+            display: none;
+        }
+
+        .accessibility-panel.active .accessibility-options {
+            display: block;
+        }
+
+        .accessibility-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .accessibility-option i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        /* High Contrast Mode */
+        .high-contrast {
+            --primary: #000000;
+            --primary-dark: #000000;
+            --primary-light: #333333;
+            --secondary: #ffffff;
+            --secondary-dark: #cccccc;
+            --accent: #ffff00;
+            --accent-green: #00ff00;
+            --light: #ffffff;
+            --dark: #000000;
+            --gray: #333333;
+            --success: #00ff00;
+            --warning: #ffff00;
+            --danger: #ff0000;
+            filter: contrast(150%);
+        }
+
+        /* Large Text Mode */
+        .large-text {
+            font-size: 1.2em;
+        }
+
+        .large-text .section-title {
+            font-size: 2.8rem;
+        }
+
+        .large-text .feature-card h3 {
+            font-size: 1.8rem;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
@@ -995,6 +1720,51 @@
                 bottom: 170px;
                 left: 20px;
             }
+
+            .ministry-badge {
+                display: none;
+            }
+
+            .user-profile {
+                margin-left: 10px;
+            }
+
+            .user-dropdown {
+                width: 180px;
+            }
+
+            .request-type {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .form-actions .btn {
+                width: 100%;
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .login-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .login-actions .btn {
+                width: 100%;
+            }
+
+            .accessibility-panel {
+                top: auto;
+                bottom: 100px;
+                transform: none;
+                border-radius: var(--border-radius) 0 0 var(--border-radius);
+            }
         }
 
         @media (max-width: 576px) {
@@ -1021,12 +1791,181 @@
             .stat-number {
                 font-size: 2.5rem;
             }
+
+            .tabs {
+                flex-wrap: wrap;
+            }
+
+            .tab {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+
+            .login-container {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Accessibility Panel -->
+    <div class="accessibility-panel" id="accessibilityPanel">
+        <button class="accessibility-toggle" id="accessibilityToggle">
+            <i class="fas fa-universal-access"></i>
+        </button>
+        <div class="accessibility-options">
+            <div class="accessibility-option" onclick="toggleHighContrast()">
+                <i class="fas fa-adjust"></i>
+                <span>High Contrast</span>
+            </div>
+            <div class="accessibility-option" onclick="toggleLargeText()">
+                <i class="fas fa-text-height"></i>
+                <span>Large Text</span>
+            </div>
+            <div class="accessibility-option" onclick="toggleSignLanguageMode()">
+                <i class="fas fa-sign-language"></i>
+                <span>Sign Language Mode</span>
+            </div>
+            <div class="accessibility-option" onclick="speakPageContent()">
+                <i class="fas fa-volume-up"></i>
+                <span>Read Aloud</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ministry Badge -->
+    <div class="ministry-badge">
+        <img src="https://i.imgur.com/97w1zzt.jpeg" alt="Ministry of Education">
+        <h4>Ministry Approved</h4>
+        <p>Child Protection Initiative</p>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-modal active" id="loginModal">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>Welcome to Zengeza 1 High</h2>
+                <p>Please answer a few questions to help us understand how we can assist you</p>
+            </div>
+
+            <div class="login-progress">
+                <div class="login-progress-bar" id="loginProgress" style="width: 25%"></div>
+            </div>
+
+            <!-- Step 1: User Type -->
+            <div class="login-step active" id="step1">
+                <div class="question-group">
+                    <label>Who are you?</label>
+                    <div class="options-grid">
+                        <div class="option-card" data-value="child">
+                            <i class="fas fa-child"></i>
+                            <h4>Child/Student</h4>
+                            <p>I need protection or assistance</p>
+                        </div>
+                        <div class="option-card" data-value="parent">
+                            <i class="fas fa-user-friends"></i>
+                            <h4>Parent/Guardian</h4>
+                            <p>I need help for my child/family</p>
+                        </div>
+                        <div class="option-card" data-value="teacher">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <h4>Teacher/Educator</h4>
+                            <p>I work with children</p>
+                        </div>
+                        <div class="option-card" data-value="community">
+                            <i class="fas fa-hands-helping"></i>
+                            <h4>Community Member</h4>
+                            <p>I want to help or report an issue</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-actions">
+                    <button class="btn btn-outline" disabled>Previous</button>
+                    <button class="btn btn-primary" onclick="nextLoginStep(2)">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Needs Assessment -->
+            <div class="login-step" id="step2">
+                <div class="question-group">
+                    <label>What kind of assistance do you need?</label>
+                    <div class="options-grid">
+                        <div class="option-card" data-value="protection">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Child Protection</h4>
+                            <p>Report abuse or safety concerns</p>
+                        </div>
+                        <div class="option-card" data-value="education">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h4>Education Support</h4>
+                            <p>School fees, supplies, tutoring</p>
+                        </div>
+                        <div class="option-card" data-value="basic">
+                            <i class="fas fa-hands-helping"></i>
+                            <h4>Basic Needs</h4>
+                            <p>Food, clothing, shelter</p>
+                        </div>
+                        <div class="option-card" data-value="counseling">
+                            <i class="fas fa-heart"></i>
+                            <h4>Counseling</h4>
+                            <p>Emotional or psychological support</p>
+                        </div>
+                        <div class="option-card" data-value="legal">
+                            <i class="fas fa-gavel"></i>
+                            <h4>Legal Assistance</h4>
+                            <p>Rights, documentation, justice</p>
+                        </div>
+                        <div class="option-card" data-value="other">
+                            <i class="fas fa-question-circle"></i>
+                            <h4>Other Support</h4>
+                            <p>Something else I need help with</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-actions">
+                    <button class="btn btn-outline" onclick="prevLoginStep(1)">Previous</button>
+                    <button class="btn btn-primary" onclick="nextLoginStep(3)">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Urgency -->
+            <div class="login-step" id="step3">
+                <div class="question-group">
+                    <label>How urgent is your situation?</label>
+                    <div class="options-grid">
+                        <div class="option-card" data-value="emergency">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h4>Emergency</h4>
+                            <p>Immediate danger or crisis</p>
+                        </div>
+                        <div class="option-card" data-value="urgent">
+                            <i class="fas fa-clock"></i>
+                            <h4>Urgent</h4>
+                            <p>Need help within a few days</p>
+                        </div>
+                        <div class="option-card" data-value="soon">
+                            <i class="fas fa-calendar-week"></i>
+                            <h4>Soon</h4>
+                            <p>Need help within a few weeks</p>
+                        </div>
+                        <div class="option-card" data-value="info">
+                            <i class="fas fa-info-circle"></i>
+                            <h4>Information</h4>
+                            <p>Just looking for information</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-actions">
+                    <button class="btn btn-outline" onclick="prevLoginStep(2)">Previous</button>
+                    <button class="btn btn-primary" onclick="completeLogin()">Finish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Header & Navigation -->
-    <header id="header">
+    <header id="header" style="display: none;">
         <div class="container">
             <nav>
                 <div class="logo-container">
@@ -1041,10 +1980,25 @@
                     <li><a href="#" data-page="about">About</a></li>
                     <li><a href="#" data-page="protection">Child Protection</a></li>
                     <li><a href="#" data-page="rights">Child Rights</a></li>
+                    <li><a href="#" data-page="sign-language">Sign Language</a></li>
+                    <li><a href="#" data-page="features">Features</a></li>
                     <li><a href="#" data-page="legal">Legal Framework</a></li>
-                    <li><a href="#" data-page="donate">Donate</a></li>
-                    <li><a href="#" data-page="contact">Contact</a></li>
+                    <li><a href="#" data-page="assistance">Get Assistance</a></li>
+                    <li><a href="#" data-page="donate">Support</a></li>
+                    <li><a href="#" data-page="settings">Settings</a></li>
                 </ul>
+                <div class="user-profile">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <div class="user-menu">
+                        <span id="userType">User</span>
+                        <div class="user-dropdown">
+                            <a href="#" data-page="profile">My Profile</a>
+                            <a href="#" data-page="assistance">My Requests</a>
+                            <a href="#" data-page="settings">Settings</a>
+                            <a href="#" id="logout">Logout</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="mobile-menu">
                     <i class="fas fa-bars"></i>
                 </div>
@@ -1053,17 +2007,30 @@
     </header>
 
     <!-- Home Page -->
-    <section id="home" class="page-section active">
+    <section id="home" class="page-section">
         <div class="hero">
             <div class="container">
                 <div class="hero-content">
                     <h1>Protecting Children, Building Futures</h1>
                     <p>Zengeza 1 High School initiative for child protection, rights awareness, and community development through comprehensive programs.</p>
                     <div class="hero-buttons">
-                        <a href="#" data-page="protection" class="btn btn-lg">Learn About Child Protection</a>
-                        <a href="#" data-page="donate" class="btn btn-outline btn-lg">Support Our Cause</a>
-                        <a href="https://wa.me/263772390199?text=Hi%20Zengeza%201%20High,%20I%20would%20like%20to%20learn%20more%20about%20your%20child%20protection%20programs" class="btn btn-outline btn-lg" target="_blank">Chat with Us</a>
+                        <a href="#" data-page="protection" class="btn btn-lg">Child Protection</a>
+                        <a href="#" data-page="assistance" class="btn btn-outline btn-lg">Get Help Now</a>
+                        <a href="https://wa.me/263772390199?text=Hi%20Zengeza%201%20High,%20I%20need%20urgent%20assistance" class="btn btn-outline btn-lg" target="_blank">Emergency Help</a>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Updates Section -->
+        <div class="live-updates">
+            <div class="container">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Recent Activities & Updates</h3>
+                <div id="updatesContainer">
+                    <!-- Updates will be loaded here dynamically -->
+                </div>
+                <div class="clear-activity">
+                    <button class="btn btn-outline" onclick="clearActivity()">Clear My Activity</button>
                 </div>
             </div>
         </div>
@@ -1105,6 +2072,11 @@
                     <h3>Child Protection</h3>
                     <p>Creating safe environments for children through awareness, prevention, and intervention programs.</p>
                     <a href="#" data-page="protection" class="btn btn-primary">Learn More</a>
+                    <div class="quick-questions" style="margin-top: 1rem;">
+                        <div class="quick-question" onclick="chatWithBot('What is child abuse?')">What is abuse?</div>
+                        <div class="quick-question" onclick="chatWithBot('How to report abuse?')">Report Abuse</div>
+                        <div class="quick-question" onclick="window.open('https://wa.me/263772390199?text=I need to report child abuse', '_blank')">Emergency Help</div>
+                    </div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -1113,6 +2085,11 @@
                     <h3>Rights Awareness</h3>
                     <p>Educating children and communities about child rights as defined in Zimbabwe's Children's Act.</p>
                     <a href="#" data-page="rights" class="btn btn-primary">Learn More</a>
+                    <div class="quick-questions" style="margin-top: 1rem;">
+                        <div class="quick-question" onclick="chatWithBot('What are children rights?')">Children Rights</div>
+                        <div class="quick-question" onclick="chatWithBot('Right to education')">Education Rights</div>
+                        <div class="quick-question" onclick="window.open('https://www.ohchr.org/en/instruments-mechanisms/instruments/convention-rights-child', '_blank')">UN Convention</div>
+                    </div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -1120,7 +2097,12 @@
                     </div>
                     <h3>Community Support</h3>
                     <p>Providing essential assistance to vulnerable families through various welfare programs.</p>
-                    <a href="#" data-page="donate" class="btn btn-primary">Get Involved</a>
+                    <a href="#" data-page="assistance" class="btn btn-primary">Get Involved</a>
+                    <div class="quick-questions" style="margin-top: 1rem;">
+                        <div class="quick-question" onclick="selectRequestType('material')">Request Help</div>
+                        <div class="quick-question" onclick="window.open('https://wa.me/263772390199?text=I need food assistance', '_blank')">Food Assistance</div>
+                        <div class="quick-question" onclick="window.open('https://wa.me/263772390199?text=I need school supplies', '_blank')">School Supplies</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1188,7 +2170,7 @@
 
             <div class="protection-grid">
                 <div class="protection-card">
-                    <h3>What is Child Abuse?</h3>
+                    <h3><i class="fas fa-exclamation-triangle"></i> What is Child Abuse?</h3>
                     <p>Child abuse includes any action that causes harm to a child, whether physical, emotional, or sexual.</p>
                     <ul>
                         <li>Physical harm or injury</li>
@@ -1198,10 +2180,11 @@
                         <li>Child labor or trafficking</li>
                     </ul>
                     <button class="btn btn-primary" onclick="chatWithBot('What is child abuse?')">Ask ZENGA Assistant</button>
+                    <a href="https://wa.me/263772390199?text=I need information about child abuse" class="btn btn-outline" target="_blank" style="margin-left: 10px;">WhatsApp Info</a>
                 </div>
 
                 <div class="protection-card">
-                    <h3>Signs of Abuse</h3>
+                    <h3><i class="fas fa-search"></i> Signs of Abuse</h3>
                     <p>Recognizing the signs of abuse is the first step to protecting a child.</p>
                     <ul>
                         <li>Unexplained injuries or bruises</li>
@@ -1212,10 +2195,11 @@
                         <li>Inappropriate sexual behavior or knowledge</li>
                     </ul>
                     <button class="btn btn-primary" onclick="chatWithBot('What are the signs of child abuse?')">Ask ZENGA Assistant</button>
+                    <a href="https://www.childline.org.uk/info-advice/bullying-abuse-safety/abuse-safety/spotting-signs-child-abuse/" class="btn btn-outline" target="_blank" style="margin-left: 10px;">More Info</a>
                 </div>
 
                 <div class="protection-card">
-                    <h3>What To Do</h3>
+                    <h3><i class="fas fa-phone-alt"></i> What To Do</h3>
                     <p>If you suspect a child is being abused, it's important to take action.</p>
                     <ul>
                         <li>Listen to and believe the child</li>
@@ -1224,11 +2208,12 @@
                         <li>Ensure the child's immediate safety</li>
                         <li>Provide emotional support</li>
                     </ul>
-                    <a href="https://wa.me/263772390199?text=I%20need%20to%20report%20a%20child%20protection%20concern" class="btn btn-danger" target="_blank">Report Abuse</a>
+                    <a href="https://wa.me/263772390199?text=I%20need%20to%20report%20a%20child%20protection%20concern" class="btn btn-danger" target="_blank">Report Abuse Now</a>
+                    <a href="tel:999" class="btn btn-outline" style="margin-left: 10px;">Emergency: 999</a>
                 </div>
 
                 <div class="protection-card">
-                    <h3>Online Safety</h3>
+                    <h3><i class="fas fa-lock"></i> Online Safety</h3>
                     <p>Protecting children in the digital space is increasingly important.</p>
                     <ul>
                         <li>Monitor online activities</li>
@@ -1238,6 +2223,35 @@
                         <li>Set clear boundaries for internet use</li>
                     </ul>
                     <button class="btn btn-primary" onclick="chatWithBot('Tell me about online safety for children')">Ask ZENGA Assistant</button>
+                    <a href="https://www.saferinternet.org.uk/advice-centre/parents-and-carers" class="btn btn-outline" target="_blank" style="margin-left: 10px;">Safety Tips</a>
+                </div>
+
+                <div class="protection-card">
+                    <h3><i class="fas fa-home"></i> Safe Environments</h3>
+                    <p>Creating safe spaces for children at home, school, and in the community.</p>
+                    <ul>
+                        <li>Establish clear rules and boundaries</li>
+                        <li>Supervise children appropriately</li>
+                        <li>Teach children about personal safety</li>
+                        <li>Build trusting relationships</li>
+                        <li>Know the signs of grooming</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="chatWithBot('How to create safe environments for children?')">Ask ZENGA Assistant</button>
+                    <a href="https://wa.me/263772390199?text=I need help creating a safe environment for children" class="btn btn-outline" target="_blank" style="margin-left: 10px;">Get Help</a>
+                </div>
+
+                <div class="protection-card">
+                    <h3><i class="fas fa-heart"></i> Emotional Support</h3>
+                    <p>Helping children recover from trauma and build resilience.</p>
+                    <ul>
+                        <li>Provide consistent emotional support</li>
+                        <li>Encourage expression of feelings</li>
+                        <li>Seek professional counseling when needed</li>
+                        <li>Build self-esteem and confidence</li>
+                        <li>Create stable routines</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="chatWithBot('How to provide emotional support to children?')">Ask ZENGA Assistant</button>
+                    <a href="https://wa.me/263772390199?text=I need counseling for a child" class="btn btn-outline" target="_blank" style="margin-left: 10px;">Request Counseling</a>
                 </div>
             </div>
 
@@ -1250,16 +2264,19 @@
                         <h3>Emergency Contact</h3>
                         <p>For immediate assistance with child protection concerns:</p>
                         <a href="tel:+263772390199" class="btn btn-danger">Call Now: +263 77 239 0199</a>
+                        <a href="tel:999" class="btn btn-outline" style="margin-top: 10px;">Emergency: 999</a>
                     </div>
                     <div class="feature-card">
                         <h3>Counseling Services</h3>
                         <p>Professional counseling for children affected by abuse:</p>
                         <a href="https://wa.me/263772390199?text=I%20need%20counseling%20services%20for%20a%20child" class="btn btn-primary" target="_blank">Request Counseling</a>
+                        <a href="https://www.psychologytoday.com/zm/therapists" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Find Therapists</a>
                     </div>
                     <div class="feature-card">
                         <h3>Educational Resources</h3>
                         <p>Materials to help educate children and adults about protection:</p>
                         <button class="btn btn-primary" onclick="chatWithBot('I need educational resources about child protection')">Ask ZENGA Assistant</button>
+                        <a href="https://www.unicef.org/protection" class="btn btn-outline" target="_blank" style="margin-top: 10px;">UNICEF Resources</a>
                     </div>
                 </div>
             </div>
@@ -1274,54 +2291,140 @@
                 <p class="section-subtitle">Every child has fundamental rights that must be protected</p>
             </div>
 
-            <div class="rights-grid">
-                <div class="right-card">
-                    <div class="right-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h4>Right to Education</h4>
-                    <p>Every child has the right to access quality education that helps them develop their potential.</p>
-                    <button class="btn btn-primary" onclick="chatWithBot('Tell me about the right to education')">Learn More</button>
+            <div class="tab-container">
+                <div class="tabs">
+                    <div class="tab active" data-tab="basic">Basic Rights</div>
+                    <div class="tab" data-tab="protection">Protection Rights</div>
+                    <div class="tab" data-tab="development">Development Rights</div>
+                    <div class="tab" data-tab="participation">Participation Rights</div>
                 </div>
-                <div class="right-card">
-                    <div class="right-icon">
-                        <i class="fas fa-shield-alt"></i>
+                
+                <div class="tab-content active" id="basic-tab">
+                    <div class="rights-grid">
+                        <div class="right-card">
+                            <div class="right-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>Right to Education</h4>
+                            <p>Every child has the right to access quality education that helps them develop their potential.</p>
+                            <button class="btn btn-primary" onclick="chatWithBot('Tell me about the right to education')">Learn More</button>
+                            <a href="https://wa.me/263772390199?text=I need help with education for a child" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Get Help</a>
+                        </div>
+                        <div class="right-card">
+                            <div class="right-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h4>Right to Health</h4>
+                            <p>Every child has the right to healthcare, nutritious food, clean water, and a safe environment.</p>
+                            <button class="btn btn-primary" onclick="chatWithBot('Tell me about the right to health')">Learn More</button>
+                            <a href="https://wa.me/263772390199?text=I need healthcare for a child" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Get Help</a>
+                        </div>
+                        <div class="right-card">
+                            <div class="right-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h4>Right to Family</h4>
+                            <p>Every child has the right to live with their family, unless it's not in their best interests.</p>
+                            <button class="btn btn-primary" onclick="chatWithBot('Tell me about the right to family')">Learn More</button>
+                            <a href="https://wa.me/263772390199?text=I need family support services" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Get Help</a>
+                        </div>
                     </div>
-                    <h4>Right to Protection</h4>
-                    <p>Children have the right to be protected from abuse, neglect, exploitation, and discrimination.</p>
-                    <button class="btn btn-primary" onclick="chatWithBot('What does the right to protection include?')">Learn More</button>
                 </div>
-                <div class="right-card">
-                    <div class="right-icon">
-                        <i class="fas fa-heartbeat"></i>
+                
+                <div class="tab-content" id="protection-tab">
+                    <div class="rights-grid">
+                        <div class="right-card">
+                            <div class="right-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4>Right to Protection</h4>
+                            <p>Children have the right to be protected from abuse, neglect, exploitation, and discrimination.</p>
+                            <button class="btn btn-primary" onclick="chatWithBot('What does the right to protection include?')">Learn More</button>
+                            <a href="https://wa.me/263772390199?text=I need protection for a child" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Get Help</a>
+                        </div>
+                        <div class="right-card">
+                            <div class="right-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <h4>Right to Identity</h4>
+                            <p>Children have the right to a legal identity, including a name and nationality.</p>
+                            <button class="btn btn-primary" onclick="chatWithBot('What is the right to identity?')">Learn More</button>
+                            <a href="https://wa.me/263772390199?text=I need help with birth registration" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Get Help</a>
+                        </div>
+                        <div class="right-card">
+                            <div class="right-icon">
+                                <i class="fas fa-ban"></i>
+                            </div>
+                            <h4>Protection from Harm</h4>
+                            <p>Children must be protected from all forms of violence, abuse, neglect, and exploitation.</p>
+                            <button class="btn btn-primary" onclick="chatWithBot('How are children protected from harm?')">Learn More</button>
+                            <a href="https://wa.me/263772390199?text=I need to report harm to a child" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Report</a>
+                        </div>
                     </div>
-                    <h4>Right to Health</h4>
-                    <p>Every child has the right to healthcare, nutritious food, clean water, and a safe environment.</p>
-                    <button class="btn btn-primary" onclick="chatWithBot('Tell me about the right to health')">Learn More</button>
                 </div>
-                <div class="right-card">
-                    <div class="right-icon">
-                        <i class="fas fa-comments"></i>
+                
+                <div class="tab-content" id="development-tab">
+                    <div class="rights-grid">
+                        <div class="right-card">
+                            <div class="right-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h4>Right to Development</h4>
+                            <p>Children have the right to develop their personalities, talents, and abilities to their fullest potential.</p>
+                            <button class="btn btn-primary" onclick="chatWithBot('What is the right to development?')">Learn More</button>
+                            <a href="https://wa.me/263772390199?text=I need development support for a child" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Get Help</a>
+                        </div>
+                        <div class="right-card">
+                            <div class="right-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <h4>Right to Play</h4>
+                            <p>Children have the right to rest, leisure, play, and participation in cultural and artistic activities.</p>
+                            <button class="btn btn-primary" onclick="chatWithBot('Tell me about the right to play')">Learn More</button>
+                            <a href="https://wa.me/263772390199?text=I need recreational activities for children" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Get Help</a>
+                        </div>
+                        <div class="right-card">
+                            <div class="right-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h4>Right to Information</h4>
+                            <p>Children have the right to access information from various sources, especially those aimed at their well-being.</p>
+                            <button class="btn btn-primary" onclick="chatWithBot('What is the right to information?')">Learn More</button>
+                            <a href="https://wa.me/263772390199?text=I need educational materials for children" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Get Help</a>
+                        </div>
                     </div>
-                    <h4>Right to Be Heard</h4>
-                    <p>Children have the right to express their opinions and have them taken seriously in matters affecting them.</p>
-                    <button class="btn btn-primary" onclick="chatWithBot('What is the right to be heard?')">Learn More</button>
                 </div>
-                <div class="right-card">
-                    <div class="right-icon">
-                        <i class="fas fa-home"></i>
+                
+                <div class="tab-content" id="participation-tab">
+                    <div class="rights-grid">
+                        <div class="right-card">
+                            <div class="right-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h4>Right to Be Heard</h4>
+                            <p>Children have the right to express their opinions and have them taken seriously in matters affecting them.</p>
+                            <button class="btn btn-primary" onclick="chatWithBot('What is the right to be heard?')">Learn More</button>
+                            <a href="https://wa.me/263772390199?text=I need help ensuring a child's voice is heard" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Get Help</a>
+                        </div>
+                        <div class="right-card">
+                            <div class="right-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>Right to Association</h4>
+                            <p>Children have the right to meet with others, join groups and organizations, as long as it doesn't harm others.</p>
+                            <button class="btn btn-primary" onclick="chatWithBot('What is the right to association?')">Learn More</button>
+                            <a href="https://wa.me/263772390199?text=I need youth group information" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Get Help</a>
+                        </div>
+                        <div class="right-card">
+                            <div class="right-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h4>Right to Justice</h4>
+                            <p>Children in conflict with the law have the right to treatment that promotes their sense of dignity and worth.</p>
+                            <button class="btn btn-primary" onclick="chatWithBot('What is the right to justice for children?')">Learn More</button>
+                            <a href="https://wa.me/263772390199?text=I need legal assistance for a child" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Get Help</a>
+                        </div>
                     </div>
-                    <h4>Right to Family</h4>
-                    <p>Every child has the right to live with their family, unless it's not in their best interests.</p>
-                    <button class="btn btn-primary" onclick="chatWithBot('Tell me about the right to family')">Learn More</button>
-                </div>
-                <div class="right-card">
-                    <div class="right-icon">
-                        <i class="fas fa-id-card"></i>
-                    </div>
-                    <h4>Right to Identity</h4>
-                    <p>Children have the right to a legal identity, including a name and nationality.</p>
-                    <button class="btn btn-primary" onclick="chatWithBot('What is the right to identity?')">Learn More</button>
                 </div>
             </div>
 
@@ -1333,18 +2436,285 @@
                     <div class="feature-card">
                         <h3>Counseling Services</h3>
                         <p>Professional counseling for children who have experienced trauma or abuse.</p>
+                        <a href="https://wa.me/263772390199?text=I need counseling services" class="btn btn-primary" target="_blank">Request Counseling</a>
                     </div>
                     <div class="feature-card">
                         <h3>Child Protection Services</h3>
                         <p>Investigation and intervention in cases of suspected abuse or neglect.</p>
+                        <a href="https://wa.me/263772390199?text=I need to report a child protection issue" class="btn btn-primary" target="_blank">Report Issue</a>
                     </div>
                     <div class="feature-card">
                         <h3>Family Support</h3>
                         <p>Programs to strengthen families and prevent separation of children from their parents.</p>
+                        <a href="https://wa.me/263772390199?text=I need family support services" class="btn btn-primary" target="_blank">Get Support</a>
                     </div>
                     <div class="feature-card">
                         <h3>Birth Registration</h3>
                         <p>Assistance with obtaining birth certificates and other identity documents.</p>
+                        <a href="https://wa.me/263772390199?text=I need help with birth registration" class="btn btn-primary" target="_blank">Get Help</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign Language Support Page -->
+    <section id="sign-language" class="page-section protection-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sign Language Support</h2>
+                <p class="section-subtitle">Making child protection accessible for everyone, including the deaf and hard of hearing community</p>
+            </div>
+
+            <div class="sign-language-features">
+                <div class="sign-language-card">
+                    <div class="sign-language-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Video Reporting</h3>
+                    <p>Record and send short videos using Zimbabwe Sign Language (ZSL) to report abuse or ask for help.</p>
+                    <div class="video-container">
+                        <video id="signLanguageVideo" poster="https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="video-controls">
+                        <button class="btn btn-primary" onclick="startVideoRecording()">
+                            <i class="fas fa-record-vinyl"></i> Start Recording
+                        </button>
+                        <button class="btn btn-danger" onclick="stopVideoRecording()" id="stopRecording" style="display: none;">
+                            <i class="fas fa-stop"></i> Stop Recording
+                        </button>
+                    </div>
+                    <button class="btn btn-outline" onclick="uploadSignLanguageVideo()" style="margin-top: 1rem;">
+                        <i class="fas fa-upload"></i> Upload Video
+                    </button>
+                </div>
+
+                <div class="sign-language-card">
+                    <div class="sign-language-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Text-Based Support</h3>
+                    <p>Communicate with our team through live chat, WhatsApp, or SMS if you prefer typing over signing.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="#" onclick="document.getElementById('chatbotToggle').click()" class="btn btn-primary">
+                            <i class="fas fa-robot"></i> Live Chat
+                        </a>
+                        <a href="https://wa.me/263772390199?text=Hello%20Zengeza%201%20High,%20I%20need%20assistance%20using%20text%20communication" class="btn btn-outline" target="_blank" style="margin-left: 10px;">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn btn-outline" onclick="openSMS()">
+                            <i class="fas fa-sms"></i> Send SMS
+                        </button>
+                    </div>
+                </div>
+
+                <div class="sign-language-card">
+                    <div class="sign-language-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3>Visual Guides</h3>
+                    <p>Use our visual guides with icons, symbols, and images to navigate the app without needing to read text.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <button class="btn btn-primary" onclick="showVisualGuide()">
+                            <i class="fas fa-book"></i> View Visual Guide
+                        </button>
+                        <a href="https://wa.me/263772390199?text=I%20need%20visual%20guides%20for%20child%20protection" class="btn btn-outline" target="_blank" style="margin-left: 10px;">
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 3rem;">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Sign Language Resources</h3>
+                <p style="text-align: center; margin-bottom: 2rem;">Learn Zimbabwe Sign Language (ZSL) for basic child protection communication</p>
+                
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-hands"></i>
+                        </div>
+                        <h3>Basic ZSL Signs</h3>
+                        <p>Learn essential signs for reporting abuse, asking for help, and understanding child rights.</p>
+                        <button class="btn btn-primary" onclick="showZSLGuide()">View Signs</button>
+                        <a href="https://wa.me/263772390199?text=I%20need%20ZSL%20learning%20materials" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Request Materials</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <h3>Partner Organizations</h3>
+                        <p>Connect with organizations that support the deaf community in Zimbabwe.</p>
+                        <button class="btn btn-primary" onclick="showPartnerOrgs()">View Partners</button>
+                        <a href="https://wa.me/263772390199?text=I%20need%20to%20connect%20with%20deaf%20organizations" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Get Connected</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>ZSL Training</h3>
+                        <p>Access training materials to learn Zimbabwe Sign Language for better communication.</p>
+                        <button class="btn btn-primary" onclick="showZSLTraining()">View Training</button>
+                        <a href="https://wa.me/263772390199?text=I%20want%20to%20learn%20ZSL" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 3rem;">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">Emergency Assistance in Sign Language</h3>
+                <p style="text-align: center; margin-bottom: 2rem;">If you need immediate help, use these emergency options</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Video Emergency</h3>
+                        <p>Record a video in ZSL explaining your emergency situation and send it to us immediately.</p>
+                        <button class="btn btn-danger" onclick="startEmergencyVideo()">
+                            <i class="fas fa-exclamation-triangle"></i> Emergency Video
+                        </button>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Text Emergency</h3>
+                        <p>Send an emergency text message with basic details of your situation.</p>
+                        <button class="btn btn-danger" onclick="sendEmergencyText()">
+                            <i class="fas fa-sms"></i> Emergency Text
+                        </button>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Designated Contact</h3>
+                        <p>Contact our designated staff member who is fluent in Zimbabwe Sign Language.</p>
+                        <a href="https://wa.me/263772390199?text=EMERGENCY:%20I%20need%20immediate%20assistance%20using%20sign%20language" class="btn btn-danger" target="_blank">
+                            <i class="fas fa-phone-alt"></i> Contact ZSL Staff
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Page -->
+    <section id="features" class="page-section protection-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Features</h2>
+                <p class="section-subtitle">Comprehensive tools and resources to support child protection and welfare</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>ZENGA AI Assistant</h3>
+                    <p>Get instant answers to your questions about child protection, rights, and available services.</p>
+                    <button class="btn btn-primary" onclick="document.getElementById('chatbotToggle').click()">Try ZENGA</button>
+                    <div class="quick-questions" style="margin-top: 1rem;">
+                        <div class="quick-question" onclick="chatWithBot('What is child abuse?')">Child Abuse</div>
+                        <div class="quick-question" onclick="chatWithBot('Children rights')">Children Rights</div>
+                        <div class="quick-question" onclick="chatWithBot('How to get help')">Get Help</div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Assistance Request</h3>
+                    <p>Submit requests for material support, counseling, or emergency assistance for children in need.</p>
+                    <a href="#" data-page="assistance" class="btn btn-primary">Request Help</a>
+                    <div class="quick-questions" style="margin-top: 1rem;">
+                        <div class="quick-question" onclick="selectRequestType('material')">Material Help</div>
+                        <div class="quick-question" onclick="selectRequestType('counseling')">Counseling</div>
+                        <div class="quick-question" onclick="selectRequestType('emergency')">Emergency</div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Educational Resources</h3>
+                    <p>Access a library of materials on child rights, protection strategies, and legal information.</p>
+                    <button class="btn btn-primary" onclick="chatWithBot('Show me educational resources')">Browse Resources</button>
+                    <div class="quick-questions" style="margin-top: 1rem;">
+                        <div class="quick-question" onclick="window.open('https://www.unicef.org/protection', '_blank')">UNICEF</div>
+                        <div class="quick-question" onclick="window.open('https://www.savethechildren.org/', '_blank')">Save Children</div>
+                        <div class="quick-question" onclick="window.open('https://www.childline.org.uk/', '_blank')">Childline</div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Child Safety Check</h3>
+                    <p>Interactive tool to assess a child's safety and wellbeing with personalized recommendations.</p>
+                    <button class="btn btn-primary" onclick="startSafetyCheck()">Start Safety Check</button>
+                    <div class="quick-questions" style="margin-top: 1rem;">
+                        <div class="quick-question" onclick="chatWithBot('Safety at home')">Home Safety</div>
+                        <div class="quick-question" onclick="chatWithBot('Online safety')">Online Safety</div>
+                        <div class="quick-question" onclick="chatWithBot('School safety')">School Safety</div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Event Calendar</h3>
+                    <p>Stay updated with workshops, awareness campaigns, and community events on child protection.</p>
+                    <button class="btn btn-primary" onclick="showEvents()">View Calendar</button>
+                    <div class="quick-questions" style="margin-top: 1rem;">
+                        <div class="quick-question" onclick="chatWithBot('Upcoming workshops')">Workshops</div>
+                        <div class="quick-question" onclick="chatWithBot('Community events')">Events</div>
+                        <div class="quick-question" onclick="chatWithBot('Training programs')">Training</div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Progress Tracking</h3>
+                    <p>Monitor the status of your assistance requests and see how your support is making a difference.</p>
+                    <a href="#" data-page="assistance" class="btn btn-primary">Track Progress</a>
+                    <div class="quick-questions" style="margin-top: 1rem;">
+                        <div class="quick-question" onclick="showMyRequests()">My Requests</div>
+                        <div class="quick-question" onclick="chatWithBot('Request status')">Check Status</div>
+                        <div class="quick-question" onclick="chatWithBot('Update my request')">Update Request</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 3rem;">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">External Resources & Partners</h3>
+                <p style="text-align: center; margin-bottom: 2rem;">We collaborate with various organizations to provide comprehensive support.</p>
+                
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h3>Ministry of Education</h3>
+                        <p>Official policies and guidelines for child protection in educational institutions.</p>
+                        <a href="http://www.mopse.gov.zw/" class="btn btn-primary" target="_blank">Visit Website</a>
+                        <a href="https://wa.me/263772390199?text=I need information from Ministry of Education" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Contact via WhatsApp</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3>Legal Resources</h3>
+                        <p>Access to Zimbabwe's Children's Act and other relevant legislation.</p>
+                        <a href="http://www.veritaszim.net/node/1807" class="btn btn-primary" target="_blank">Access Laws</a>
+                        <a href="https://wa.me/263772390199?text=I need legal assistance" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Legal Help</a>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-ambulance"></i>
+                        </div>
+                        <h3>Emergency Services</h3>
+                        <p>Direct links to emergency contacts and crisis support services.</p>
+                        <a href="tel:999" class="btn btn-primary">Emergency: 999</a>
+                        <a href="https://wa.me/263772390199?text=EMERGENCY: I need immediate assistance" class="btn btn-outline" target="_blank" style="margin-top: 10px;">WhatsApp Emergency</a>
                     </div>
                 </div>
             </div>
@@ -1370,6 +2740,7 @@
                         <li>Right to education, healthcare, and shelter</li>
                     </ul>
                     <button class="btn btn-primary" onclick="chatWithBot('What does the Constitution say about children rights?')">Ask ZENGA Assistant</button>
+                    <a href="https://www.constituteproject.org/constitution/Zimbabwe_2013.pdf" class="btn btn-outline" target="_blank" style="margin-left: 10px;">Read Constitution</a>
                 </div>
 
                 <div class="legal-card">
@@ -1382,6 +2753,7 @@
                         <li>Establishment of children's courts</li>
                     </ul>
                     <button class="btn btn-primary" onclick="chatWithBot('What is the Children Act in Zimbabwe?')">Ask ZENGA Assistant</button>
+                    <a href="http://www.veritaszim.net/node/1807" class="btn btn-outline" target="_blank" style="margin-left: 10px;">Read Act</a>
                 </div>
 
                 <div class="legal-card">
@@ -1394,6 +2766,7 @@
                         <li>Support services for affected children</li>
                     </ul>
                     <button class="btn btn-primary" onclick="chatWithBot('How does the Domestic Violence Act protect children?')">Ask ZENGA Assistant</button>
+                    <a href="https://wa.me/263772390199?text=I need help with domestic violence" class="btn btn-outline" target="_blank" style="margin-left: 10px;">Get Help</a>
                 </div>
 
                 <div class="legal-card">
@@ -1406,6 +2779,33 @@
                         <li>Optional Protocols on child trafficking</li>
                     </ul>
                     <button class="btn btn-primary" onclick="chatWithBot('What international conventions protect children in Zimbabwe?')">Ask ZENGA Assistant</button>
+                    <a href="https://www.ohchr.org/en/instruments-mechanisms/instruments/convention-rights-child" class="btn btn-outline" target="_blank" style="margin-left: 10px;">UN Convention</a>
+                </div>
+
+                <div class="legal-card">
+                    <h3><i class="fas fa-school"></i> Education Act</h3>
+                    <p>Regulates the education system and ensures children's right to education.</p>
+                    <ul>
+                        <li>Free and compulsory basic education</li>
+                        <li>Regulations on school discipline</li>
+                        <li>Protection from discrimination in education</li>
+                        <li>Special education needs provisions</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="chatWithBot('What does the Education Act say?')">Ask ZENGA Assistant</button>
+                    <a href="https://wa.me/263772390199?text=I need help with education rights" class="btn btn-outline" target="_blank" style="margin-left: 10px;">Education Help</a>
+                </div>
+
+                <div class="legal-card">
+                    <h3><i class="fas fa-heartbeat"></i> Public Health Act</h3>
+                    <p>Provides for children's health rights and access to healthcare services.</p>
+                    <ul>
+                        <li>Immunization requirements</li>
+                        <li>Child and maternal health services</li>
+                        <li>Nutrition programs for children</li>
+                        <li>Adolescent health services</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="chatWithBot('What health rights do children have?')">Ask ZENGA Assistant</button>
+                    <a href="https://wa.me/263772390199?text=I need healthcare for a child" class="btn btn-outline" target="_blank" style="margin-left: 10px;">Health Help</a>
                 </div>
             </div>
 
@@ -1421,6 +2821,7 @@
                         <h3>Children's Act Summary</h3>
                         <p>Simplified version of the Children's Act for easy understanding.</p>
                         <button class="btn btn-primary" onclick="chatWithBot('Where can I find the Children Act summary?')">Request Document</button>
+                        <a href="https://wa.me/263772390199?text=I need the Children Act summary" class="btn btn-outline" target="_blank" style="margin-top: 10px;">WhatsApp Request</a>
                     </div>
                     <div class="resource-card">
                         <div class="resource-icon">
@@ -1429,6 +2830,7 @@
                         <h3>Birth Registration Guide</h3>
                         <p>Step-by-step guide to registering a child's birth in Zimbabwe.</p>
                         <button class="btn btn-primary" onclick="chatWithBot('How do I register a child birth?')">Request Guide</button>
+                        <a href="https://wa.me/263772390199?text=I need help with birth registration" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Get Help</a>
                     </div>
                     <div class="resource-card">
                         <div class="resource-icon">
@@ -1437,6 +2839,286 @@
                         <h3>Reporting Abuse Guide</h3>
                         <p>Information on how and where to report child abuse cases.</p>
                         <button class="btn btn-primary" onclick="chatWithBot('How do I report child abuse?')">Request Guide</button>
+                        <a href="https://wa.me/263772390199?text=I need to report child abuse" class="btn btn-outline" target="_blank" style="margin-top: 10px;">Report Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assistance Page -->
+    <section id="assistance" class="page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get Assistance</h2>
+                <p class="section-subtitle">Request support for children and families in need</p>
+            </div>
+
+            <div class="tab-container">
+                <div class="tabs">
+                    <div class="tab active" data-tab="request">Request Assistance</div>
+                    <div class="tab" data-tab="my-requests">My Requests</div>
+                    <div class="tab" data-tab="resources">Available Resources</div>
+                </div>
+                
+                <div class="tab-content active" id="request-tab">
+                    <div class="request-form">
+                        <h3 style="text-align: center; margin-bottom: 1.5rem;">What type of assistance do you need?</h3>
+                        
+                        <div class="request-type">
+                            <div class="request-option active" data-type="material">
+                                <i class="fas fa-box"></i>
+                                <h4>Material Support</h4>
+                                <p>Food, clothing, school supplies, etc.</p>
+                            </div>
+                            <div class="request-option" data-type="counseling">
+                                <i class="fas fa-heart"></i>
+                                <h4>Counseling</h4>
+                                <p>Psychological support for children</p>
+                            </div>
+                            <div class="request-option" data-type="educational">
+                                <i class="fas fa-graduation-cap"></i>
+                                <h4>Educational Support</h4>
+                                <p>School fees, tutoring, resources</p>
+                            </div>
+                            <div class="request-option" data-type="emergency">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h4>Emergency Protection</h4>
+                                <p>Immediate safety concerns</p>
+                            </div>
+                        </div>
+                        
+                        <div class="request-details active" id="material-details">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 25%"></div>
+                            </div>
+                            
+                            <div class="progress-steps">
+                                <div class="progress-step active">
+                                    <div class="step-number">1</div>
+                                    <div class="step-label">Type</div>
+                                </div>
+                                <div class="progress-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-label">Details</div>
+                                </div>
+                                <div class="progress-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-label">Review</div>
+                                </div>
+                                <div class="progress-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-label">Submit</div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-step active" id="step1">
+                                <h4 style="margin-bottom: 1.5rem;">What specific material support do you need?</h4>
+                                
+                                <div class="form-group">
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;">
+                                        <label style="display: flex; align-items: center; padding: 10px; border: 1px solid #ddd; border-radius: var(--border-radius); cursor: pointer;">
+                                            <input type="checkbox" name="material-type" value="food" style="margin-right: 10px;">
+                                            Food items
+                                        </label>
+                                        <label style="display: flex; align-items: center; padding: 10px; border: 1px solid #ddd; border-radius: var(--border-radius); cursor: pointer;">
+                                            <input type="checkbox" name="material-type" value="clothing" style="margin-right: 10px;">
+                                            Clothing
+                                        </label>
+                                        <label style="display: flex; align-items: center; padding: 10px; border: 1px solid #ddd; border-radius: var(--border-radius); cursor: pointer;">
+                                            <input type="checkbox" name="material-type" value="school" style="margin-right: 10px;">
+                                            School supplies
+                                        </label>
+                                        <label style="display: flex; align-items: center; padding: 10px; border: 1px solid #ddd; border-radius: var(--border-radius); cursor: pointer;">
+                                            <input type="checkbox" name="material-type" value="hygiene" style="margin-right: 10px;">
+                                            Hygiene products
+                                        </label>
+                                        <label style="display: flex; align-items: center; padding: 10px; border: 1px solid #ddd; border-radius: var(--border-radius); cursor: pointer;">
+                                            <input type="checkbox" name="material-type" value="medical" style="margin-right: 10px;">
+                                            Medical supplies
+                                        </label>
+                                        <label style="display: flex; align-items: center; padding: 10px; border: 1px solid #ddd; border-radius: var(--border-radius); cursor: pointer;">
+                                            <input type="checkbox" name="material-type" value="other" style="margin-right: 10px;">
+                                            Other
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button class="btn btn-outline" disabled>Previous</button>
+                                    <button class="btn btn-primary" onclick="nextStep(2)">Next</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-step" id="step2">
+                                <h4 style="margin-bottom: 1.5rem;">Tell us more about your situation</h4>
+                                
+                                <div class="form-group">
+                                    <label for="urgency">Urgency Level</label>
+                                    <select id="urgency" class="form-control">
+                                        <option value="low">Low - Can wait 2+ weeks</option>
+                                        <option value="medium">Medium - Needed within 2 weeks</option>
+                                        <option value="high">High - Needed within a week</option>
+                                        <option value="critical">Critical - Needed immediately</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="beneficiaries">Number of children needing assistance</label>
+                                    <input type="number" id="beneficiaries" class="form-control" min="1" value="1">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="situation">Describe your current situation</label>
+                                    <textarea id="situation" class="form-control" placeholder="Please provide details about why you need assistance..."></textarea>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button class="btn btn-outline" onclick="prevStep(1)">Previous</button>
+                                    <button class="btn btn-primary" onclick="nextStep(3)">Next</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-step" id="step3">
+                                <h4 style="margin-bottom: 1.5rem;">Review your request</h4>
+                                
+                                <div id="request-summary">
+                                    <!-- Summary will be generated here -->
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button class="btn btn-outline" onclick="prevStep(2)">Previous</button>
+                                    <button class="btn btn-primary" onclick="nextStep(4)">Submit Request</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-step" id="step4">
+                                <div style="text-align: center; padding: 2rem;">
+                                    <i class="fas fa-check-circle" style="font-size: 4rem; color: var(--success); margin-bottom: 1rem;"></i>
+                                    <h4>Request Submitted Successfully!</h4>
+                                    <p>Your request has been received and will be processed within 24-48 hours.</p>
+                                    <p>You will receive updates via WhatsApp on the status of your request.</p>
+                                    <button class="btn btn-primary" onclick="resetRequestForm()">Submit Another Request</button>
+                                    <a href="https://wa.me/263772390199?text=I just submitted an assistance request" class="btn btn-outline" target="_blank" style="margin-left: 10px;">Confirm via WhatsApp</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="my-requests-tab">
+                    <h3 style="margin-bottom: 1.5rem;">My Assistance Requests</h3>
+                    
+                    <div id="requests-list">
+                        <!-- Requests will be loaded here -->
+                        <div class="assistance-card">
+                            <div class="assistance-header">
+                                <h4 class="assistance-title">Material Support - Food & Clothing</h4>
+                                <span class="assistance-status status-approved">Approved</span>
+                            </div>
+                            <div class="assistance-details">
+                                <p><strong>Submitted:</strong> 15 June 2023</p>
+                                <p><strong>For:</strong> 2 children</p>
+                                <p><strong>Status:</strong> Package prepared for collection</p>
+                            </div>
+                            <div class="assistance-actions">
+                                <button class="btn btn-primary">View Details</button>
+                                <a href="https://wa.me/263772390199?text=About my material support request" class="btn btn-outline" target="_blank">Contact Support</a>
+                            </div>
+                        </div>
+                        
+                        <div class="assistance-card">
+                            <div class="assistance-header">
+                                <h4 class="assistance-title">Counseling Services</h4>
+                                <span class="assistance-status status-pending">Pending</span>
+                            </div>
+                            <div class="assistance-details">
+                                <p><strong>Submitted:</strong> 10 June 2023</p>
+                                <p><strong>For:</strong> 1 child</p>
+                                <p><strong>Status:</strong> Under review by our counseling team</p>
+                            </div>
+                            <div class="assistance-actions">
+                                <button class="btn btn-primary">View Details</button>
+                                <a href="https://wa.me/263772390199?text=About my counseling request" class="btn btn-outline" target="_blank">Contact Support</a>
+                            </div>
+                        </div>
+                        
+                        <div class="assistance-card">
+                            <div class="assistance-header">
+                                <h4 class="assistance-title">Educational Support</h4>
+                                <span class="assistance-status status-completed">Completed</span>
+                            </div>
+                            <div class="assistance-details">
+                                <p><strong>Submitted:</strong> 1 May 2023</p>
+                                <p><strong>For:</strong> 1 child</p>
+                                <p><strong>Status:</strong> School fees paid for Term 2</p>
+                            </div>
+                            <div class="assistance-actions">
+                                <button class="btn btn-primary">View Details</button>
+                                <a href="https://wa.me/263772390199?text=Feedback on my educational support" class="btn btn-outline" target="_blank">Provide Feedback</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="resources-tab">
+                    <h3 style="margin-bottom: 1.5rem;">Available Resources</h3>
+                    
+                    <div class="resources-grid">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h3>Food Assistance</h3>
+                            <p>Monthly food packages for families in need. Includes staple foods and nutritional supplements for children.</p>
+                            <button class="btn btn-primary" onclick="selectRequestType('material')">Request Assistance</button>
+                            <a href="https://wa.me/263772390199?text=I need food assistance" class="btn btn-outline" target="_blank" style="margin-top: 10px;">WhatsApp Request</a>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-tshirt"></i>
+                            </div>
+                            <h3>Clothing Bank</h3>
+                            <p>Gently used and new clothing for children of all ages. School uniforms also available.</p>
+                            <button class="btn btn-primary" onclick="selectRequestType('material')">Request Assistance</button>
+                            <a href="https://wa.me/263772390199?text=I need clothing for children" class="btn btn-outline" target="_blank" style="margin-top: 10px;">WhatsApp Request</a>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3>Educational Support</h3>
+                            <p>School fees assistance, tutoring programs, and educational materials for disadvantaged students.</p>
+                            <button class="btn btn-primary" onclick="selectRequestType('educational')">Request Assistance</button>
+                            <a href="https://wa.me/263772390199?text=I need educational support" class="btn btn-outline" target="_blank" style="margin-top: 10px;">WhatsApp Request</a>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3>Counseling Services</h3>
+                            <p>Professional counseling for children affected by trauma, abuse, or family difficulties.</p>
+                            <button class="btn btn-primary" onclick="selectRequestType('counseling')">Request Assistance</button>
+                            <a href="https://wa.me/263772390199?text=I need counseling services" class="btn btn-outline" target="_blank" style="margin-top: 10px;">WhatsApp Request</a>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-first-aid"></i>
+                            </div>
+                            <h3>Medical Assistance</h3>
+                            <p>Support with medical expenses, referrals to healthcare providers, and health education.</p>
+                            <button class="btn btn-primary" onclick="selectRequestType('material')">Request Assistance</button>
+                            <a href="https://wa.me/263772390199?text=I need medical assistance" class="btn btn-outline" target="_blank" style="margin-top: 10px;">WhatsApp Request</a>
+                        </div>
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h3>Emergency Shelter</h3>
+                            <p>Temporary safe accommodation for children in crisis situations or unsafe home environments.</p>
+                            <button class="btn btn-primary" onclick="selectRequestType('emergency')">Request Assistance</button>
+                            <a href="https://wa.me/263772390199?text=I need emergency shelter" class="btn btn-outline" target="_blank" style="margin-top: 10px;">WhatsApp Request</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1553,6 +3235,105 @@
         </div>
     </section>
 
+    <!-- Settings Page -->
+    <section id="settings" class="page-section protection-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Settings</h2>
+                <p class="section-subtitle">Customize your experience and manage your preferences</p>
+            </div>
+
+            <div class="settings-panel">
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Notifications</h4>
+                        <p>Receive updates about your requests and important announcements</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Dark Mode</h4>
+                        <p>Switch to dark theme for better visibility in low light</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="darkModeToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Offline Mode</h4>
+                        <p>Enable offline functionality for areas with limited connectivity</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Language</h4>
+                        <p>Select your preferred language</p>
+                    </div>
+                    <select class="form-control" style="width: auto;">
+                        <option>English</option>
+                        <option>Shona</option>
+                        <option>Ndebele</option>
+                    </select>
+                </div>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Text Size</h4>
+                        <p>Adjust the text size for better readability</p>
+                    </div>
+                    <select class="form-control" style="width: auto;">
+                        <option>Small</option>
+                        <option selected>Medium</option>
+                        <option>Large</option>
+                    </select>
+                </div>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Data Saving</h4>
+                        <p>Reduce data usage by loading smaller images</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Clear Activity History</h4>
+                        <p>Remove all your recent activity from the system</p>
+                    </div>
+                    <button class="btn btn-outline" onclick="clearActivity()">Clear Now</button>
+                </div>
+            </div>
+
+            <div class="form-container" style="margin-top: 3rem;">
+                <h3 style="text-align: center; margin-bottom: 1.5rem;">About This App</h3>
+                
+                <div style="text-align: center; padding: 2rem;">
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">Zengeza 1 High Child Protection Initiative</h4>
+                    <p style="margin-bottom: 1rem;">A comprehensive platform for child protection, rights awareness, and community support.</p>
+                    <p style="font-style: italic; color: var(--gray);">Developed by Glorify Mutuwa</p>
+                    <p style="margin-top: 1.5rem;">Version 2.0 | 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Page -->
     <section id="contact" class="page-section">
         <div class="container">
@@ -1623,33 +3404,20 @@
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/263772390199" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#" data-page="home">Home</a></li>
-                        <li><a href="#" data-page="about">About</a></li>
-                        <li><a href="#" data-page="protection">Child Protection</a></li>
-                        <li><a href="#" data-page="rights">Child Rights</a></li>
-                        <li><a href="#" data-page="legal">Legal Framework</a></li>
-                        <li><a href="#" data-page="donate">Donate</a></li>
-                        <li><a href="#" data-page="contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
+                    <h3>Emergency Contacts</h3>
                     <ul class="footer-links contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> Zengeza 1 High, Chitungwiza</li>
                         <li><i class="fas fa-phone-alt"></i> <a href="tel:+263772390199">+263 77 239 0199</a></li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:childprotection@zengeza1high.edu.zw">childprotection@zengeza1high.edu.zw</a></li>
-                        <li><i class="fas fa-clock"></i> Mon-Fri: 8AM-4PM</li>
+                        <li><i class="fas fa-ambulance"></i> <a href="tel:999">Emergency: 999</a></li>
+                        <li><i class="fas fa-shield-alt"></i> <a href="tel:995">Police: 995</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Zengeza 1 High Child Protection & Social Welfare Initiative. All rights reserved.</p>
+                <p>&copy; 2025 Zengeza 1 High Child Protection & Social Welfare Initiative. | Developed by Glorify Mutuwa</p>
             </div>
         </div>
     </footer>
@@ -1691,8 +3459,37 @@
 
     <!-- JavaScript -->
     <script>
+        // User data storage
+        let userData = {
+            type: '',
+            needs: [],
+            urgency: '',
+            loginTime: null
+        };
+
+        // Database simulation using localStorage
+        function initDatabase() {
+            if (!localStorage.getItem('users')) {
+                localStorage.setItem('users', JSON.stringify([]));
+            }
+            if (!localStorage.getItem('assistanceRequests')) {
+                localStorage.setItem('assistanceRequests', JSON.stringify([]));
+            }
+            if (!localStorage.getItem('userActivities')) {
+                localStorage.setItem('userActivities', JSON.stringify([]));
+            }
+            if (!localStorage.getItem('settings')) {
+                localStorage.setItem('settings', JSON.stringify({
+                    darkMode: false,
+                    largeText: false,
+                    highContrast: false,
+                    signLanguageMode: false
+                }));
+            }
+        }
+
         // Page Navigation
-        document.querySelectorAll('.nav-links a, .hero-buttons a[data-page]').forEach(link => {
+        document.querySelectorAll('.nav-links a, .hero-buttons a[data-page], .user-dropdown a[data-page]').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const pageId = this.getAttribute('data-page');
@@ -1716,6 +3513,9 @@
             
             // Scroll to top
             window.scrollTo(0, 0);
+            
+            // Update user activity for live updates
+            updateUserActivity(`Visited ${pageId} page`);
         }
 
         // Mobile Menu Toggle
@@ -1745,6 +3545,9 @@
             const text = `Hello Zengeza 1 High! I would like to make a donation of $${amount} to support your child protection programs. I will send the donation via EcoCash to 0772 390 199.`;
             const encodedText = encodeURIComponent(text);
             window.open(`https://wa.me/263772390199?text=${encodedText}`, '_blank');
+            
+            // Track donation activity
+            updateUserActivity(`Initiated donation of $${amount}`);
         }
 
         // Animate Stats Counter
@@ -1795,6 +3598,9 @@
             window.open(`https://wa.me/263772390199?text=${encodedText}`, '_blank');
             this.reset();
             alert('Thank you for your message! We will respond as soon as possible.');
+            
+            // Track contact form submission
+            updateUserActivity(`Submitted contact form with subject: ${subject}`);
         });
 
         // Chatbot Functionality
@@ -1806,11 +3612,11 @@
         const chatbotSend = document.getElementById('chatbotSend');
 
         chatbotToggle.addEventListener('click', function() {
-            chatbotContainer.style.display = 'flex';
+            chatbotContainer.classList.toggle('active');
         });
 
         chatbotClose.addEventListener('click', function() {
-            chatbotContainer.style.display = 'none';
+            chatbotContainer.classList.remove('active');
         });
 
         chatbotSend.addEventListener('click', sendMessage);
@@ -1832,6 +3638,9 @@
             setTimeout(() => {
                 const response = generateResponse(message);
                 addMessage(response, 'bot');
+                
+                // Track chatbot interaction
+                updateUserActivity(`Asked ZENGA: ${message.substring(0, 50)}${message.length > 50 ? '...' : ''}`);
             }, 1000);
         }
 
@@ -1934,22 +3743,629 @@
                 return "You're welcome! Is there anything else I can help you with regarding child protection, children's rights, or our programs?";
             
             } else {
-                return "I'm not sure I understand. Could you please rephrase your question? I can help with information about child protection, children's rights, legal frameworks, reporting abuse, or getting support. Or you can contact us directly at +263 77 239 0199 for specific assistance.";
+                const fallbackMessage = "I'm not sure I understand. Could you please rephrase your question? I can help with information about child protection, children's rights, legal frameworks, reporting abuse, or getting support. For more complex questions, you can contact us directly on WhatsApp.";
+                return fallbackMessage;
             }
         }
 
         function chatWithBot(predefinedMessage) {
-            chatbotContainer.style.display = 'flex';
+            chatbotContainer.classList.add('active');
             setTimeout(() => {
                 chatbotInput.value = predefinedMessage;
                 sendMessage();
             }, 500);
         }
 
-        // Initialize the app with home page
-        document.addEventListener('DOMContentLoaded', function() {
+        // Live Updates Section
+        function loadLiveUpdates() {
+            const updates = [
+                {
+                    icon: 'fas fa-users',
+                    title: 'Community Workshop',
+                    description: 'Conducted child protection workshop for 150 parents and teachers'
+                },
+                {
+                    icon: 'fas fa-graduation-cap',
+                    title: 'Rights Awareness Campaign',
+                    description: 'Educated 500+ students about their rights in school programs'
+                },
+                {
+                    icon: 'fas fa-hands-helping',
+                    title: 'Family Support Program',
+                    description: 'Provided assistance to 25 vulnerable families this month'
+                },
+                {
+                    icon: 'fas fa-book',
+                    title: 'Educational Materials',
+                    description: 'Distributed 300+ child protection booklets to schools'
+                }
+            ];
+
+            const updatesContainer = document.getElementById('updatesContainer');
+            updates.forEach(update => {
+                const updateElement = document.createElement('div');
+                updateElement.className = 'update-item';
+                updateElement.innerHTML = `
+                    <div class="update-icon">
+                        <i class="${update.icon}"></i>
+                    </div>
+                    <div class="update-content">
+                        <h4>${update.title}</h4>
+                        <p>${update.description}</p>
+                    </div>
+                `;
+                updatesContainer.appendChild(updateElement);
+            });
+        }
+
+        // Tab Functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                this.classList.add('active');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+
+        // Request Type Selection
+        document.querySelectorAll('.request-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove active class from all options
+                document.querySelectorAll('.request-option').forEach(o => o.classList.remove('active'));
+                
+                // Add active class to clicked option
+                this.classList.add('active');
+                
+                // Show corresponding details
+                const requestType = this.getAttribute('data-type');
+                document.querySelectorAll('.request-details').forEach(d => d.classList.remove('active'));
+                document.getElementById(`${requestType}-details`).classList.add('active');
+                
+                // Reset form to first step
+                resetRequestForm();
+            });
+        });
+
+        function selectRequestType(type) {
+            document.querySelectorAll('.request-option').forEach(o => o.classList.remove('active'));
+            document.querySelector(`.request-option[data-type="${type}"]`).classList.add('active');
+            
+            document.querySelectorAll('.request-details').forEach(d => d.classList.remove('active'));
+            document.getElementById(`${type}-details`).classList.add('active');
+            
+            // Switch to request tab
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('.tab[data-tab="request"]').classList.add('active');
+            
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('request-tab').classList.add('active');
+            
+            resetRequestForm();
+        }
+
+        // Multi-step Form Navigation
+        function nextStep(step) {
+            // Hide current step
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            
+            // Show next step
+            document.getElementById(`step${step}`).classList.add('active');
+            
+            // Update progress bar
+            const progress = (step / 4) * 100;
+            document.querySelector('.progress').style.width = `${progress}%`;
+            
+            // Update progress steps
+            document.querySelectorAll('.progress-step').forEach((s, index) => {
+                if (index + 1 < step) {
+                    s.classList.add('completed');
+                    s.classList.remove('active');
+                } else if (index + 1 === step) {
+                    s.classList.add('active');
+                    s.classList.remove('completed');
+                } else {
+                    s.classList.remove('active', 'completed');
+                }
+            });
+            
+            // Generate summary on step 3
+            if (step === 3) {
+                generateRequestSummary();
+            }
+            
+            // Submit request on step 4
+            if (step === 4) {
+                submitRequest();
+            }
+        }
+
+        function prevStep(step) {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step${step}`).classList.add('active');
+            
+            const progress = (step / 4) * 100;
+            document.querySelector('.progress').style.width = `${progress}%`;
+            
+            document.querySelectorAll('.progress-step').forEach((s, index) => {
+                if (index + 1 < step) {
+                    s.classList.add('completed');
+                    s.classList.remove('active');
+                } else if (index + 1 === step) {
+                    s.classList.add('active');
+                    s.classList.remove('completed');
+                } else {
+                    s.classList.remove('active', 'completed');
+                }
+            });
+        }
+
+        function generateRequestSummary() {
+            const requestType = document.querySelector('.request-option.active').getAttribute('data-type');
+            const materialTypes = Array.from(document.querySelectorAll('input[name="material-type"]:checked'))
+                .map(input => input.value);
+            const urgency = document.getElementById('urgency').value;
+            const beneficiaries = document.getElementById('beneficiaries').value;
+            const situation = document.getElementById('situation').value;
+            
+            let summaryHTML = `
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: var(--border-radius);">
+                    <h4 style="margin-bottom: 1rem;">Request Summary</h4>
+                    <p><strong>Type:</strong> ${requestType.charAt(0).toUpperCase() + requestType.slice(1)} Support</p>
+            `;
+            
+            if (materialTypes.length > 0) {
+                summaryHTML += `<p><strong>Items Needed:</strong> ${materialTypes.map(type => type.charAt(0).toUpperCase() + type.slice(1)).join(', ')}</p>`;
+            }
+            
+            summaryHTML += `
+                    <p><strong>Urgency:</strong> ${urgency.charAt(0).toUpperCase() + urgency.slice(1)}</p>
+                    <p><strong>Beneficiaries:</strong> ${beneficiaries} children</p>
+                    <p><strong>Situation:</strong> ${situation}</p>
+                </div>
+            `;
+            
+            document.getElementById('request-summary').innerHTML = summaryHTML;
+        }
+
+        function submitRequest() {
+            // In a real application, this would send the request to a server
+            // For now, we'll just show a success message
+            
+            // Track request submission
+            const requestType = document.querySelector('.request-option.active').getAttribute('data-type');
+            updateUserActivity(`Submitted ${requestType} assistance request`);
+            
+            // Simulate processing delay
+            setTimeout(() => {
+                // This would typically be handled by a backend
+                console.log('Request submitted successfully');
+            }, 1000);
+        }
+
+        function resetRequestForm() {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step1').classList.add('active');
+            
+            document.querySelector('.progress').style.width = '25%';
+            
+            document.querySelectorAll('.progress-step').forEach((s, index) => {
+                if (index === 0) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active', 'completed');
+                }
+            });
+            
+            // Reset form fields
+            document.querySelectorAll('input[name="material-type"]').forEach(input => input.checked = false);
+            document.getElementById('urgency').value = 'low';
+            document.getElementById('beneficiaries').value = '1';
+            document.getElementById('situation').value = '';
+        }
+
+        // User Activity Tracking
+        function updateUserActivity(activity) {
+            // Get existing activities from localStorage
+            let activities = JSON.parse(localStorage.getItem('userActivities') || '[]');
+            
+            // Add new activity with timestamp
+            activities.unshift({
+                activity: activity,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Keep only the last 10 activities
+            if (activities.length > 10) {
+                activities = activities.slice(0, 10);
+            }
+            
+            // Save back to localStorage
+            localStorage.setItem('userActivities', JSON.stringify(activities));
+            
+            // Update live updates if on home page
+            if (document.getElementById('home').classList.contains('active')) {
+                updateLiveUpdatesWithUserActivity();
+            }
+        }
+
+        function updateLiveUpdatesWithUserActivity() {
+            const activities = JSON.parse(localStorage.getItem('userActivities') || '[]');
+            const updatesContainer = document.getElementById('updatesContainer');
+            
+            // Clear existing updates
+            updatesContainer.innerHTML = '';
+            
+            // Add user activities
+            activities.forEach(activity => {
+                const updateElement = document.createElement('div');
+                updateElement.className = 'update-item';
+                
+                // Format timestamp
+                const date = new Date(activity.timestamp);
+                const timeString = date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                
+                updateElement.innerHTML = `
+                    <div class="update-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="update-content">
+                        <h4>Your Activity</h4>
+                        <p>${activity.activity} - ${timeString}</p>
+                    </div>
+                `;
+                updatesContainer.appendChild(updateElement);
+            });
+            
+            // If no user activities, show default updates
+            if (activities.length === 0) {
+                loadLiveUpdates();
+            }
+        }
+
+        // Clear Activity Function
+        function clearActivity() {
+            localStorage.removeItem('userActivities');
+            updateLiveUpdatesWithUserActivity();
+            alert('Your activity history has been cleared.');
+        }
+
+        // Accessibility Features
+        const accessibilityPanel = document.getElementById('accessibilityPanel');
+        const accessibilityToggle = document.getElementById('accessibilityToggle');
+
+        accessibilityToggle.addEventListener('click', function() {
+            accessibilityPanel.classList.toggle('active');
+        });
+
+        function toggleHighContrast() {
+            document.body.classList.toggle('high-contrast');
+            const settings = JSON.parse(localStorage.getItem('settings'));
+            settings.highContrast = !settings.highContrast;
+            localStorage.setItem('settings', JSON.stringify(settings));
+        }
+
+        function toggleLargeText() {
+            document.body.classList.toggle('large-text');
+            const settings = JSON.parse(localStorage.getItem('settings'));
+            settings.largeText = !settings.largeText;
+            localStorage.setItem('settings', JSON.stringify(settings));
+        }
+
+        function toggleSignLanguageMode() {
+            const settings = JSON.parse(localStorage.getItem('settings'));
+            settings.signLanguageMode = !settings.signLanguageMode;
+            localStorage.setItem('settings', JSON.stringify(settings));
+            
+            if (settings.signLanguageMode) {
+                showPage('sign-language');
+                alert('Sign Language Mode activated. You can now use video reporting and other accessibility features.');
+            } else {
+                alert('Sign Language Mode deactivated.');
+            }
+        }
+
+        function speakPageContent() {
+            if ('speechSynthesis' in window) {
+                const speech = new SpeechSynthesisUtterance();
+                speech.text = document.body.innerText.substring(0, 1000); // Limit to first 1000 characters
+                window.speechSynthesis.speak(speech);
+            } else {
+                alert('Text-to-speech is not supported in your browser.');
+            }
+        }
+
+        // Sign Language Features
+        let mediaRecorder;
+        let recordedChunks = [];
+
+        function startVideoRecording() {
+            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                .then(stream => {
+                    const video = document.getElementById('signLanguageVideo');
+                    video.srcObject = stream;
+                    video.play();
+                    
+                    mediaRecorder = new MediaRecorder(stream);
+                    recordedChunks = [];
+                    
+                    mediaRecorder.ondataavailable = event => {
+                        if (event.data.size > 0) {
+                            recordedChunks.push(event.data);
+                        }
+                    };
+                    
+                    mediaRecorder.start();
+                    document.getElementById('stopRecording').style.display = 'inline-block';
+                })
+                .catch(error => {
+                    console.error('Error accessing camera:', error);
+                    alert('Unable to access camera. Please check permissions and try again.');
+                });
+        }
+
+        function stopVideoRecording() {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+                mediaRecorder.stream.getTracks().forEach(track => track.stop());
+                
+                document.getElementById('stopRecording').style.display = 'none';
+                
+                // Create a blob from the recorded chunks
+                const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                const url = URL.createObjectURL(blob);
+                
+                const video = document.getElementById('signLanguageVideo');
+                video.srcObject = null;
+                video.src = url;
+                video.controls = true;
+            }
+        }
+
+        function uploadSignLanguageVideo() {
+            if (recordedChunks.length === 0) {
+                alert('Please record a video first.');
+                return;
+            }
+            
+            // In a real application, this would upload to a server
+            // For now, we'll simulate the upload process
+            alert('Video uploaded successfully! Our team will review your message and respond within 24 hours.');
+            updateUserActivity('Uploaded sign language video for assistance');
+            
+            // Reset the video
+            const video = document.getElementById('signLanguageVideo');
+            video.src = '';
+            video.controls = false;
+            recordedChunks = [];
+        }
+
+        function openSMS() {
+            const phoneNumber = '0772390199';
+            const message = 'Hello Zengeza 1 High, I need assistance using text communication';
+            window.open(`sms:${phoneNumber}?body=${encodeURIComponent(message)}`);
+        }
+
+        function showVisualGuide() {
+            alert('Visual guide would open in a new window showing icons and symbols for navigation.');
+        }
+
+        function showZSLGuide() {
+            alert('Zimbabwe Sign Language guide would open with basic signs for child protection communication.');
+        }
+
+        function showPartnerOrgs() {
+            alert('List of partner organizations supporting the deaf community would be displayed.');
+        }
+
+        function showZSLTraining() {
+            alert('ZSL training materials and enrollment information would be displayed.');
+        }
+
+        function startEmergencyVideo() {
+            alert('Emergency video recording would start with priority processing.');
+            startVideoRecording();
+        }
+
+        function sendEmergencyText() {
+            const phoneNumber = '0772390199';
+            const message = 'EMERGENCY: I need immediate assistance. Please call me back.';
+            window.open(`sms:${phoneNumber}?body=${encodeURIComponent(message)}`);
+        }
+
+        // Dark Mode Toggle
+        document.getElementById('darkModeToggle').addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.getElementById('darkModeToggle').checked = true;
+            document.body.classList.add('dark-mode');
+        }
+
+        // Login System
+        document.querySelectorAll('.option-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove selected class from all cards in this group
+                const parent = this.closest('.options-grid');
+                parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+                
+                // Add selected class to clicked card
+                this.classList.add('selected');
+            });
+        });
+
+        function nextLoginStep(step) {
+            // Hide current step
+            document.querySelectorAll('.login-step').forEach(s => s.classList.remove('active'));
+            
+            // Show next step
+            document.getElementById(`step${step}`).classList.add('active');
+            
+            // Update progress bar
+            const progress = (step / 3) * 100;
+            document.getElementById('loginProgress').style.width = `${progress}%`;
+        }
+
+        function prevLoginStep(step) {
+            document.querySelectorAll('.login-step').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step${step}`).classList.add('active');
+            
+            const progress = (step / 3) * 100;
+            document.getElementById('loginProgress').style.width = `${progress}%`;
+        }
+
+        function completeLogin() {
+            // Collect user data from login process
+            const userType = document.querySelector('#step1 .option-card.selected')?.getAttribute('data-value') || 'unknown';
+            const userNeeds = document.querySelector('#step2 .option-card.selected')?.getAttribute('data-value') || 'info';
+            const userUrgency = document.querySelector('#step3 .option-card.selected')?.getAttribute('data-value') || 'info';
+            
+            // Store user data
+            userData = {
+                type: userType,
+                needs: [userNeeds],
+                urgency: userUrgency,
+                loginTime: new Date().toISOString()
+            };
+            
+            // Save user to database
+            const users = JSON.parse(localStorage.getItem('users'));
+            users.push({
+                id: Date.now(),
+                type: userType,
+                needs: [userNeeds],
+                urgency: userUrgency,
+                loginTime: new Date().toISOString(),
+                lastActivity: new Date().toISOString()
+            });
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Update UI based on user type
+            document.getElementById('userType').textContent = userType.charAt(0).toUpperCase() + userType.slice(1);
+            document.getElementById('userAvatar').textContent = userType.charAt(0).toUpperCase();
+            
+            // Hide login modal and show main app
+            document.getElementById('loginModal').classList.remove('active');
+            document.getElementById('header').style.display = 'block';
             showPage('home');
+            
+            // Track login activity
+            updateUserActivity(`Logged in as ${userType} needing ${userNeeds} assistance`);
+            
+            // Show personalized welcome message
+            setTimeout(() => {
+                let welcomeMessage = `Welcome! As a ${userType}, we've customized this app to better serve your needs. `;
+                
+                if (userUrgency === 'emergency') {
+                    welcomeMessage += "Since you indicated this is an emergency, we've highlighted emergency resources for you.";
+                } else if (userNeeds === 'protection') {
+                    welcomeMessage += "We've made child protection resources easily accessible for you.";
+                } else if (userNeeds === 'basic') {
+                    welcomeMessage += "We've made assistance request forms readily available for you.";
+                }
+                
+                alert(welcomeMessage);
+            }, 500);
+        }
+
+        // Additional Feature Functions
+        function startSafetyCheck() {
+            alert("Child Safety Check feature would open here. This interactive tool would help assess a child's safety and wellbeing.");
+            updateUserActivity("Started Child Safety Check");
+        }
+
+        function showEvents() {
+            alert("Event Calendar would open here, showing upcoming workshops, awareness campaigns, and community events.");
+            updateUserActivity("Viewed Event Calendar");
+        }
+
+        function showMyRequests() {
+            // Switch to my requests tab
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('.tab[data-tab="my-requests"]').classList.add('active');
+            
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('my-requests-tab').classList.add('active');
+            
+            updateUserActivity("Viewed My Requests");
+        }
+
+        // Logout functionality
+        document.getElementById('logout').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+                // Clear user data
+                localStorage.removeItem('userActivities');
+                // Show login modal again
+                document.getElementById('loginModal').classList.add('active');
+                document.getElementById('header').style.display = 'none';
+                // Reset login form
+                document.querySelectorAll('.login-step').forEach(s => s.classList.remove('active'));
+                document.getElementById('step1').classList.add('active');
+                document.getElementById('loginProgress').style.width = '25%';
+                document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+            }
+        });
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize database
+            initDatabase();
+            
+            // Check if user is already logged in (in a real app, this would check authentication)
+            const users = JSON.parse(localStorage.getItem('users'));
+            const isLoggedIn = users && users.length > 0;
+            
+            if (isLoggedIn) {
+                document.getElementById('loginModal').classList.remove('active');
+                document.getElementById('header').style.display = 'block';
+                showPage('home');
+                
+                // Load last user data
+                const lastUser = users[users.length - 1];
+                document.getElementById('userType').textContent = lastUser.type.charAt(0).toUpperCase() + lastUser.type.slice(1);
+                document.getElementById('userAvatar').textContent = lastUser.type.charAt(0).toUpperCase();
+            } else {
+                // Show login modal by default
+                document.getElementById('loginModal').classList.add('active');
+                document.getElementById('header').style.display = 'none';
+            }
+            
+            // Load initial content
+            loadLiveUpdates();
+            
+            // Check if we have user activities and update if needed
+            const activities = JSON.parse(localStorage.getItem('userActivities') || '[]');
+            if (activities.length > 0) {
+                updateLiveUpdatesWithUserActivity();
+            }
+            
+            // Load settings
+            const settings = JSON.parse(localStorage.getItem('settings'));
+            if (settings.highContrast) {
+                document.body.classList.add('high-contrast');
+            }
+            if (settings.largeText) {
+                document.body.classList.add('large-text');
+            }
+            if (settings.darkMode) {
+                document.body.classList.add('dark-mode');
+                document.getElementById('darkModeToggle').checked = true;
+            }
         });
     </script>
 </body>
-</html>
+    </html>
